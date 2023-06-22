@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
               function: () {
                 print("2222");
               }),
-          SizedBox(
+          const SizedBox(
             width: 16,
           )
         ],
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Let\'s Play',
                 style: TextStyle(
                   fontSize: 32,
@@ -57,10 +57,10 @@ class _HomePageState extends State<HomePage> {
                   fontFamily: kFontFamily,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
-              Text(
+              const Text(
                 'Be the First!',
                 style: TextStyle(
                   fontSize: 18,
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                   fontFamily: kFontFamily,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               MyLevelWidget(
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return LevelDescription();
+                        return const LevelDescription();
                       },
                     ),
                   );
@@ -86,15 +86,24 @@ class _HomePageState extends State<HomePage> {
                 title: 'True or False',
                 subtitle: 'Level 1',
                 image: 'assets/images/bags.png',
-                colors: [kL1, kL12],
+                colors: const [kL1, kL12],
               ),
               MyLevelWidget(
-                function: () {},
+                function: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const LevelDescription();
+                      },
+                    ),
+                  );
+                },
                 icon: Icons.play_arrow,
                 title: 'Multiple Choice',
                 subtitle: 'Level 2',
                 image: 'assets/images/ballon-s.png',
-                colors: [kL2, kL22],
+                colors: const [kL2, kL22],
               ),
             ],
           ),

@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_quiz_s_t_tt9/pages/true_false_q_screen.dart';
 
 import '../constants.dart';
 import '../widgets/my_outline_btn.dart';
-import 'multiple_q_screen.dart';
 
 class LevelDescription extends StatelessWidget {
   const LevelDescription({Key? key}) : super(key: key);
@@ -15,7 +13,7 @@ class LevelDescription extends StatelessWidget {
     var questionsCount = 10;
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
               kBlueBg,
@@ -55,16 +53,16 @@ class LevelDescription extends StatelessWidget {
               ),
               Text(
                 'question $questionNumber of $questionsCount',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontFamily: 'Sf-Pro-Text',
                   color: Colors.white60,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
-              Text(
+              const Text(
                 'In Which City of Germany Is the Largest Port?',
                 style: TextStyle(
                   fontSize: 32,
@@ -73,7 +71,7 @@ class LevelDescription extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
+              const Text(
                 'question  dhjvajak jklfsakljvabvjkfabjsk \n cdklbvcjksabcddhsaj',
                 style: TextStyle(
                   fontSize: 18,
@@ -81,7 +79,7 @@ class LevelDescription extends StatelessWidget {
                   color: Colors.white60,
                 ),
               ),
-              Spacer(),
+              const Spacer(),
               Padding(
                 padding: const EdgeInsets.only(bottom: 12),
                 child: ElevatedButton(
@@ -98,9 +96,10 @@ class LevelDescription extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12, horizontal: 16),
                   ),
-                  child: Expanded(
+                  child: const Expanded(
                     child: Center(
                       child: Text(
                         'Game',
@@ -113,7 +112,7 @@ class LevelDescription extends StatelessWidget {
                   ),
                 ),
               ),
-              Spacer()
+              const Spacer()
             ],
           ),
         ),

@@ -8,6 +8,8 @@ import '../widgets/my_outline_btn.dart';
 import 'home.dart';
 
 class TrueFalseQuiz extends StatefulWidget {
+  const TrueFalseQuiz({super.key});
+
   @override
   _TrueFalseQuizState createState() => _TrueFalseQuizState();
 }
@@ -26,14 +28,14 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
     setState(() {
       if (correctAnswer == userChoice) {
         scoreKeeper.add(
-          Icon(
+          const Icon(
             Icons.check,
             color: Colors.green,
           ),
         );
       } else {
         scoreKeeper.add(
-          Icon(
+          const Icon(
             Icons.close,
             color: Colors.red,
           ),
@@ -44,7 +46,7 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
     if (quizBrain.isFinished()) {
       print('finished');
 
-      Timer(Duration(seconds: 1), () {
+      Timer(const Duration(seconds: 1), () {
         // Alert(context: context, title: "Finished", desc: "you are done").show();
         setState(() {
           quizBrain.reset();
@@ -58,7 +60,7 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
 
   @override
   void initState() {
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         counter--;
       });
@@ -67,7 +69,6 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
         counter = 10;
         quizBrain.nextQuestion();
       }
-      ;
     });
     super.initState();
   }
@@ -81,7 +82,7 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
               kBlueBg,
@@ -114,7 +115,7 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HomePage(),
+                            builder: (context) => const HomePage(),
                           ),
                           (route) => false,
                         );
@@ -135,7 +136,7 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
                       ),
                       Text(
                         counter.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontFamily: 'Sf-Pro-Text',
                           fontSize: 24,
                           color: Colors.white,
@@ -146,27 +147,27 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
                   ),
                   OutlinedButton(
                     onPressed: () {},
-                    child: Icon(
-                      Icons.favorite,
-                      color: Colors.white,
-                    ),
                     style: OutlinedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        side: BorderSide(color: Colors.white)),
+                        side: const BorderSide(color: Colors.white)),
+                    child: Icon(
+                      Icons.favorite,
+                      color: Colors.white,
+                    ),
                   )
                 ],
               ),
               Expanded(
                 flex: 5,
                 child: Padding(
-                  padding: EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: Center(
                     child: Text(
                       quizBrain.getQuestionText(),
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 25.0,
                         color: Colors.white,
                       ),
@@ -176,12 +177,12 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: ElevatedButton(
-                    style: ButtonStyle(
+                    style: const ButtonStyle(
                       backgroundColor: MaterialStatePropertyAll(Colors.green),
                     ),
-                    child: Text(
+                    child: const Text(
                       'True',
                       style: TextStyle(
                         color: Colors.white,
@@ -197,12 +198,12 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: ElevatedButton(
-                    style: ButtonStyle().copyWith(
+                    style: const ButtonStyle().copyWith(
                       backgroundColor: MaterialStatePropertyAll(Colors.red),
                     ),
-                    child: Text(
+                    child: const Text(
                       'False',
                       style: TextStyle(
                         fontSize: 20.0,
@@ -219,7 +220,7 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
               Wrap(
                 children: scoreKeeper,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 72,
               )
             ],

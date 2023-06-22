@@ -1,0 +1,22 @@
+{
+    "sourceFile": "lib/widgets/my_level_widget.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1687441551734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1687441556912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';\r\n \r\n class MyLevelWidget extends StatelessWidget {\r\n   final Function() function;\r\n-  \r\n+\r\n   final IconData icon;\r\n   final String title;\r\n   final String subtitle;\r\n   final String image;\r\n"
+                }
+            ],
+            "date": 1687441551734,
+            "name": "Commit-0",
+            "content": "import 'package:flutter/material.dart';\r\nimport 'package:multi_quiz_s_t_tt9/constants.dart';\r\nimport 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';\r\n\r\nclass MyLevelWidget extends StatelessWidget {\r\n  final Function() function;\r\n  \r\n  final IconData icon;\r\n  final String title;\r\n  final String subtitle;\r\n  final String image;\r\n  final List<Color> colors;\r\n\r\n  const MyLevelWidget({\r\n    Key? key,\r\n    required this.function,\r\n    required this.icon,\r\n    required this.title,\r\n    required this.subtitle,\r\n    required this.image,\r\n    required this.colors,\r\n  }) : super(key: key);\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return GestureDetector(\r\n      onTap: function,\r\n      child: Stack(\r\n        alignment: Alignment.topRight,\r\n        children: [\r\n          Container(\r\n            width: double.infinity,\r\n            margin: EdgeInsets.only(top: 54, bottom: 24),\r\n            padding: EdgeInsets.all(24),\r\n            decoration: BoxDecoration(\r\n              gradient: LinearGradient(\r\n                colors: colors,\r\n              ),\r\n              borderRadius: BorderRadius.circular(30),\r\n            ),\r\n            child: Column(\r\n              crossAxisAlignment: CrossAxisAlignment.start,\r\n              children: [\r\n                SizedBox(\r\n                  height: 44,\r\n                  width: 44,\r\n                  child: MYOutlineBtn(\r\n                    icon: icon,\r\n                    iconColor: Colors.white,\r\n                    bColor: Colors.white,\r\n                    function: () {},\r\n                    shapeBorder: RoundedRectangleBorder(\r\n                      borderRadius: BorderRadius.circular(15),\r\n                    ),\r\n                  ),\r\n                ),\r\n                SizedBox(\r\n                  height: 12,\r\n                ),\r\n                Text(\r\n                  subtitle,\r\n                  style: TextStyle(\r\n                    fontSize: 16,\r\n                    color: Colors.white60,\r\n                    fontFamily: kFontFamily,\r\n                  ),\r\n                ),\r\n                SizedBox(\r\n                  height: 4,\r\n                ),\r\n                Text(\r\n                  title,\r\n                  style: TextStyle(\r\n                    fontSize: 32,\r\n                    color: Colors.white,\r\n                    fontWeight: FontWeight.bold,\r\n                    fontFamily: kFontFamily,\r\n                  ),\r\n                ),\r\n              ],\r\n            ),\r\n          ),\r\n          Padding(\r\n            padding: const EdgeInsets.only(right: 28.0),\r\n            child: Image.asset(image),\r\n          ),\r\n        ],\r\n      ),\r\n    );\r\n  }\r\n}\r\n"
+        }
+    ]
+}

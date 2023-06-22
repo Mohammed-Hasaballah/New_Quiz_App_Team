@@ -4,6 +4,7 @@ import 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';
 
 class MyLevelWidget extends StatelessWidget {
   final Function() function;
+
   final IconData icon;
   final String title;
   final String subtitle;

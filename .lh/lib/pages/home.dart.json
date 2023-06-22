@@ -3,11 +3,95 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 21,
             "patches": [
                 {
                     "date": 1687438294637,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1687441028493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,115 @@\n+import 'package:flutter/material.dart';\r\n+import 'package:multi_quiz_s_t_tt9/constants.dart';\r\n+import 'package:multi_quiz_s_t_tt9/pages/level_describtion.dart';\r\n+import 'package:multi_quiz_s_t_tt9/pages/multiple_q_screen.dart';\r\n+import 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';\r\n+\r\n+import '../widgets/my_level_widget.dart';\r\n+\r\n+class HomePage extends StatefulWidget {\r\n+  const HomePage({\r\n+    super.key,\r\n+  });\r\n+  @override\r\n+  State<HomePage> createState() => _HomePageState();\r\n+}\r\n+\r\n+class _HomePageState extends State<HomePage> {\r\n+  \r\n+  @override\r\n+  Widget build(BuildContext context) {\r\n+    return Scaffold(\r\n+      appBar: AppBar(\r\n+        backgroundColor: Colors.transparent,\r\n+        elevation: 0,\r\n+        actions: [\r\n+          MYOutlineBtn(\r\n+            icon: Icons.favorite,\r\n+            iconColor: kBlueIcon,\r\n+            bColor: kGreyFont.withOpacity(0.5),\r\n+            function: () {\r\n+              print(\"11111\");\r\n+            },\r\n+          ),\r\n+          MYOutlineBtn(\r\n+              icon: Icons.person,\r\n+              iconColor: kBlueIcon,\r\n+              bColor: kGreyFont.withOpacity(0.5),\r\n+              function: () {\r\n+                print(\"2222\");\r\n+              }),\r\n+          const SizedBox(\r\n+            width: 16,\r\n+          )\r\n+        ],\r\n+      ),\r\n+      body: SingleChildScrollView(\r\n+        child: Padding(\r\n+          padding: const EdgeInsets.symmetric(horizontal: 16),\r\n+          child: Column(\r\n+            crossAxisAlignment: CrossAxisAlignment.start,\r\n+            children: [\r\n+              const Text(\r\n+                'Let\\'s Play',\r\n+                style: TextStyle(\r\n+                  fontSize: 32,\r\n+                  color: kRedFont,\r\n+                  fontWeight: FontWeight.bold,\r\n+                  fontFamily: kFontFamily,\r\n+                ),\r\n+              ),\r\n+              const SizedBox(\r\n+                height: 8,\r\n+              ),\r\n+              const Text(\r\n+                'Be the First!',\r\n+                style: TextStyle(\r\n+                  fontSize: 18,\r\n+                  color: kGreyFont,\r\n+                  fontFamily: kFontFamily,\r\n+                ),\r\n+              ),\r\n+              const SizedBox(\r\n+                height: 24,\r\n+              ),\r\n+              MyLevelWidget(\r\n+                function: () {\r\n+                  Navigator.push(\r\n+                    context,\r\n+                    MaterialPageRoute(\r\n+                      builder: (context) {\r\n+                        return const LevelDescription();\r\n+                      },\r\n+                    ),\r\n+                  );\r\n+                },\r\n+                icon: Icons.check,\r\n+                title: 'True or False',\r\n+                subtitle: 'Level 1',\r\n+                image: 'assets/images/bags.png',\r\n+                colors: const [kL1, kL12],\r\n+              ),\r\n+              MyLevelWidget(\r\n+                function: () {\r\n+                  Navigator.push(\r\n+                    context,\r\n+                    MaterialPageRoute(\r\n+                      builder: (context) {\r\n+                        return const LevelDescription();\r\n+                      },\r\n+                    ),\r\n+                  );\r\n+                },\r\n+                icon: Icons.play_arrow,\r\n+                title: 'Multiple Choice',\r\n+                subtitle: 'Level 2',\r\n+                image: 'assets/images/ballon-s.png',\r\n+                colors: const [kL2, kL22],\r\n+              ),\r\n+            ],\r\n+          ),\r\n+        ),\r\n+      ),\r\n+    );\r\n+  }\r\n+}\r\n"
+                },
+                {
+                    "date": 1687441034228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   State<HomePage> createState() => _HomePageState();\r\n }\r\n \r\n class _HomePageState extends State<HomePage> {\r\n-  \r\n+  List<Level>\r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return Scaffold(\r\n       appBar: AppBar(\r\n@@ -112,118 +112,4 @@\n       ),\r\n     );\r\n   }\r\n }\r\n-import 'package:flutter/material.dart';\r\n-import 'package:multi_quiz_s_t_tt9/constants.dart';\r\n-import 'package:multi_quiz_s_t_tt9/pages/level_describtion.dart';\r\n-import 'package:multi_quiz_s_t_tt9/pages/multiple_q_screen.dart';\r\n-import 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';\r\n-\r\n-import '../widgets/my_level_widget.dart';\r\n-\r\n-class HomePage extends StatefulWidget {\r\n-  const HomePage({\r\n-    super.key,\r\n-  });\r\n-  @override\r\n-  State<HomePage> createState() => _HomePageState();\r\n-}\r\n-\r\n-class _HomePageState extends State<HomePage> {\r\n-  @override\r\n-  Widget build(BuildContext context) {\r\n-    return Scaffold(\r\n-      appBar: AppBar(\r\n-        backgroundColor: Colors.transparent,\r\n-        elevation: 0,\r\n-        actions: [\r\n-          MYOutlineBtn(\r\n-            icon: Icons.favorite,\r\n-            iconColor: kBlueIcon,\r\n-            bColor: kGreyFont.withOpacity(0.5),\r\n-            function: () {\r\n-              print(\"11111\");\r\n-            },\r\n-          ),\r\n-          MYOutlineBtn(\r\n-              icon: Icons.person,\r\n-              iconColor: kBlueIcon,\r\n-              bColor: kGreyFont.withOpacity(0.5),\r\n-              function: () {\r\n-                print(\"2222\");\r\n-              }),\r\n-          SizedBox(\r\n-            width: 16,\r\n-          )\r\n-        ],\r\n-      ),\r\n-      body: SingleChildScrollView(\r\n-        child: Padding(\r\n-          padding: const EdgeInsets.symmetric(horizontal: 16),\r\n-          child: Column(\r\n-            crossAxisAlignment: CrossAxisAlignment.start,\r\n-            children: [\r\n-              Text(\r\n-                'Let\\'s Play',\r\n-                style: TextStyle(\r\n-                  fontSize: 32,\r\n-                  color: kRedFont,\r\n-                  fontWeight: FontWeight.bold,\r\n-                  fontFamily: kFontFamily,\r\n-                ),\r\n-              ),\r\n-              SizedBox(\r\n-                height: 8,\r\n-              ),\r\n-              Text(\r\n-                'Be the First!',\r\n-                style: TextStyle(\r\n-                  fontSize: 18,\r\n-                  color: kGreyFont,\r\n-                  fontFamily: kFontFamily,\r\n-                ),\r\n-              ),\r\n-              SizedBox(\r\n-                height: 24,\r\n-              ),\r\n-              MyLevelWidget(\r\n-                function: () {\r\n-                  Navigator.push(\r\n-                    context,\r\n-                    MaterialPageRoute(\r\n-                      builder: (context) {\r\n-                        return LevelDescription();\r\n-                      },\r\n-                    ),\r\n-                  );\r\n-                },\r\n-                icon: Icons.check,\r\n-                title: 'True or False',\r\n-                subtitle: 'Level 1',\r\n-                image: 'assets/images/bags.png',\r\n-                colors: [kL1, kL12],\r\n-              ),\r\n-              MyLevelWidget(\r\n-                function: () {\r\n-                   Navigator.push(\r\n-                    context,\r\n-                    MaterialPageRoute(\r\n-                      builder: (context) {\r\n-                        return LevelDescription();\r\n-                      },\r\n-                    ),\r\n-                  );\r\n-                },\r\n-                icon: Icons.play_arrow,\r\n-                title: 'Multiple Choice',\r\n-                subtitle: 'Level 2',\r\n-                image: 'assets/images/ballon-s.png',\r\n-                colors: [kL2, kL22],\r\n-              ),\r\n-            ],\r\n-          ),\r\n-        ),\r\n-      ),\r\n-    );\r\n-  }\r\n-}\r\n"
+                },
+                {
+                    "date": 1687441040258,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   State<HomePage> createState() => _HomePageState();\r\n }\r\n \r\n class _HomePageState extends State<HomePage> {\r\n-  List<Level>\r\n+  List<Level> levels = []; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return Scaffold(\r\n       appBar: AppBar(\r\n"
+                },
+                {
+                    "date": 1687441059794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n   State<HomePage> createState() => _HomePageState();\r\n }\r\n \r\n class _HomePageState extends State<HomePage> {\r\n-  List<Level> levels = []; \r\n+  List<level> levels = []; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return Scaffold(\r\n       appBar: AppBar(\r\n"
+                },
+                {
+                    "date": 1687441065211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import 'package:flutter/material.dart';\r\n import 'package:multi_quiz_s_t_tt9/constants.dart';\r\n+import 'package:multi_quiz_s_t_tt9/modules/level_class.dart';\r\n import 'package:multi_quiz_s_t_tt9/pages/level_describtion.dart';\r\n import 'package:multi_quiz_s_t_tt9/pages/multiple_q_screen.dart';\r\n import 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';\r\n \r\n@@ -14,9 +15,11 @@\n   State<HomePage> createState() => _HomePageState();\r\n }\r\n \r\n class _HomePageState extends State<HomePage> {\r\n-  List<level> levels = []; \r\n+  List<level> levels = [\r\n+    \r\n+  ]; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return Scaffold(\r\n       appBar: AppBar(\r\n"
+                },
+                {
+                    "date": 1687441073457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,12 @@\n }\r\n \r\n class _HomePageState extends State<HomePage> {\r\n   List<level> levels = [\r\n-    \r\n+    level(\r\n+      title: 'Level 1',\r\n+      \r\n+    )\r\n   ]; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return Scaffold(\r\n"
+                },
+                {
+                    "date": 1687441081535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n class _HomePageState extends State<HomePage> {\r\n   List<level> levels = [\r\n     level(\r\n       title: 'Level 1',\r\n-      \r\n+      subtitle: \r\n     )\r\n   ]; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n"
+                },
+                {
+                    "date": 1687441089049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,10 @@\n \r\n class _HomePageState extends State<HomePage> {\r\n   List<level> levels = [\r\n     level(\r\n-      title: 'Level 1',\r\n-      subtitle: \r\n+      title: 'True',\r\n+      subtitle: 'level 1'\r\n     )\r\n   ]; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n"
+                },
+                {
+                    "date": 1687441096317,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,10 @@\n \r\n class _HomePageState extends State<HomePage> {\r\n   List<level> levels = [\r\n     level(\r\n-      title: 'True',\r\n-      subtitle: 'level 1'\r\n+      title: 'True or False',\r\n+      subtitle: 'Level 1'\r\n     )\r\n   ]; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n"
+                },
+                {
+                    "date": 1687441102339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,10 @@\n class _HomePageState extends State<HomePage> {\r\n   List<level> levels = [\r\n     level(\r\n       title: 'True or False',\r\n-      subtitle: 'Level 1'\r\n+      subtitle: 'Level 1',\r\n+      descreption: 'True or False',\r\n     )\r\n   ]; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n"
+                },
+                {
+                    "date": 1687441109307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n     level(\r\n       title: 'True or False',\r\n       subtitle: 'Level 1',\r\n       descreption: 'True or False',\r\n+      image: 'assets/images/ballon-b.png',\r\n     )\r\n   ]; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n"
+                },
+                {
+                    "date": 1687441115931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n       title: 'True or False',\r\n       subtitle: 'Level 1',\r\n       descreption: 'True or False',\r\n       image: 'assets/images/ballon-b.png',\r\n+      \r\n     )\r\n   ]; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n"
+                },
+                {
+                    "date": 1687441121268,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n       title: 'True or False',\r\n       subtitle: 'Level 1',\r\n       descreption: 'True or False',\r\n       image: 'assets/images/ballon-b.png',\r\n+      icon: Icons.check,\r\n       \r\n     )\r\n   ]; \r\n   @override\r\n"
+                },
+                {
+                    "date": 1687441131614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,11 @@\n       subtitle: 'Level 1',\r\n       descreption: 'True or False',\r\n       image: 'assets/images/ballon-b.png',\r\n       icon: Icons.check,\r\n-      \r\n+      colors: const [\r\n+        kl\r\n+      ]\r\n     )\r\n   ]; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n"
+                },
+                {
+                    "date": 1687441139627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       descreption: 'True or False',\r\n       image: 'assets/images/ballon-b.png',\r\n       icon: Icons.check,\r\n       colors: const [\r\n-        kl\r\n+        kL1 , kl12\r\n       ]\r\n     )\r\n   ]; \r\n   @override\r\n"
+                },
+                {
+                    "date": 1687441144940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n       descreption: 'True or False',\r\n       image: 'assets/images/ballon-b.png',\r\n       icon: Icons.check,\r\n       colors: const [\r\n-        kL1 , kl12\r\n+        kL1 ,,\r\n       ]\r\n     )\r\n   ]; \r\n   @override\r\n"
+                },
+                {
+                    "date": 1687441152541,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,11 +22,12 @@\n       subtitle: 'Level 1',\r\n       descreption: 'True or False',\r\n       image: 'assets/images/ballon-b.png',\r\n       icon: Icons.check,\r\n-      colors: const [\r\n-        kL1 ,,\r\n-      ]\r\n+      colors:   [\r\n+        kL1 , kL12\r\n+      ], \r\n+      \r\n     )\r\n   ]; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n"
+                },
+                {
+                    "date": 1687441159323,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,10 +25,10 @@\n       icon: Icons.check,\r\n       colors:   [\r\n         kL1 , kL12\r\n       ], \r\n-      \r\n-    )\r\n+      routeName: '/level1',\r\n+    ), \r\n   ]; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return Scaffold(\r\n"
+                },
+                {
+                    "date": 1687441168397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,8 +27,19 @@\n         kL1 , kL12\r\n       ], \r\n       routeName: '/level1',\r\n     ), \r\n+    level(\r\n+      title: 'Multiple',\r\n+      subtitle: 'Level 1',\r\n+      descreption: 'True or False',\r\n+      image: 'assets/images/ballon-b.png',\r\n+      icon: Icons.check,\r\n+      colors:   [\r\n+        kL1 , kL12\r\n+      ], \r\n+      routeName: '/level1',\r\n+    ), \r\n   ]; \r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return Scaffold(\r\n"
+                },
+                {
+                    "date": 1687441182712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n     ), \r\n     level(\r\n       title: 'Multiple Choice',\r\n       subtitle: 'Level 2',\r\n-      descreption: 'True or False',\r\n+      descreption: 'Rise Up',\r\n       image: 'assets/images/ballon-b.png',\r\n       icon: Icons.check,\r\n       colors:   [\r\n         kL1 , kL12\r\n"
+                },
+                {
+                    "date": 1687441225824,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n               icon: Icons.person,\r\n               iconColor: kBlueIcon,\r\n               bColor: kGreyFont.withOpacity(0.5),\r\n               function: () {\r\n-                print(\"2222\");\r\n+                \r\n               }),\r\n           const SizedBox(\r\n             width: 16,\r\n           )\r\n"
                 }
             ],
             "date": 1687438294637,

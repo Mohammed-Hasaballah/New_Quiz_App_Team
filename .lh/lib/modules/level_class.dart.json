@@ -1,0 +1,18 @@
+{
+    "sourceFile": "lib/modules/level_class.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1687440732606,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1687440732606,
+            "name": "Commit-0",
+            "content": "import 'package:flutter/material.dart';\r\n\r\nclass level{\r\n   late final String title;\r\n   late final String subtitle;\r\n   late final String? descreption;\r\n  late final String? image;\r\n  late final IconData? icon;\r\n  late final List<Color>colors;\r\n  late final String routeName;\r\n  level({\r\n    required this.title,\r\n    required this.subtitle,\r\n     this.descreption,\r\n     this.image,\r\n     this.icon,\r\n     required  this.colors,\r\n    required this.routeName,\r\n  });\r\n\r\n}\r\n\r\n\r\n\r\n"
+        }
+    ]
+}

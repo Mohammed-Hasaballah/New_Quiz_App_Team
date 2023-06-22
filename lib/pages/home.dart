@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:multi_quiz_s_t_tt9/constants.dart';
+import 'package:multi_quiz_s_t_tt9/modules/level_class.dart';
 import 'package:multi_quiz_s_t_tt9/pages/level_describtion.dart';
-import 'package:multi_quiz_s_t_tt9/pages/multiple_q_screen.dart';
 import 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';
 
 import '../widgets/my_level_widget.dart';
@@ -15,6 +15,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<level> levels = [
+    level(
+      title: 'True or False',
+      subtitle: 'Level 1',
+      descreption: 'True or False',
+      image: 'assets/images/bags.png',
+      icon: Icons.check,
+      colors: [kL1, kL12],
+      routeName: '/level1',
+    ),
+    level(
+      title: 'Multiple Choice',
+      subtitle: 'Level 2',
+      descreption: 'Rise Up',
+      image: 'assets/images/ballon-s.png',
+      icon: Icons.play_arrow,
+      colors: [kL2, kL22],
+      routeName: '/level2',
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,17 +46,13 @@ class _HomePageState extends State<HomePage> {
             icon: Icons.favorite,
             iconColor: kBlueIcon,
             bColor: kGreyFont.withOpacity(0.5),
-            function: () {
-              print("11111");
-            },
+            function: () {},
           ),
           MYOutlineBtn(
               icon: Icons.person,
               iconColor: kBlueIcon,
               bColor: kGreyFont.withOpacity(0.5),
-              function: () {
-                print("2222");
-              }),
+              function: () {}),
           const SizedBox(
             width: 16,
           )

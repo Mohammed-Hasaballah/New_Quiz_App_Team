@@ -3,8 +3,6 @@ import 'package:multi_quiz_s_t_tt9/constants.dart';
 import 'package:multi_quiz_s_t_tt9/modules/level_class.dart';
 import 'package:multi_quiz_s_t_tt9/pages/level_describtion.dart';
 import 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';
-
-import '../modules/level_class.dart';
 import '../widgets/my_level_widget.dart';
 
 class HomePage extends StatefulWidget {

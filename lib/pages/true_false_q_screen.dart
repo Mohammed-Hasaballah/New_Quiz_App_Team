@@ -1,7 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-
 import '../constants.dart';
 import '../modules/true_false/quizBrain.dart';
 import '../widgets/my_outline_btn.dart';
@@ -16,11 +16,8 @@ class TrueFalseQuiz extends StatefulWidget {
 
 class _TrueFalseQuizState extends State<TrueFalseQuiz> {
   QuizBrain quizBrain = QuizBrain();
-
   List<Icon> scoreKeeper = [];
-
   int? _choice;
-
   int counter = 10;
 
   void checkAnswer(bool userChoice) {
@@ -152,7 +149,7 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
                           borderRadius: BorderRadius.circular(25),
                         ),
                         side: const BorderSide(color: Colors.white)),
-                    child: Icon(
+                    child: const Icon(
                       Icons.favorite,
                       color: Colors.white,
                     ),
@@ -201,7 +198,8 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
                   padding: const EdgeInsets.all(15.0),
                   child: ElevatedButton(
                     style: const ButtonStyle().copyWith(
-                      backgroundColor: MaterialStatePropertyAll(Colors.red),
+                      backgroundColor:
+                          const MaterialStatePropertyAll(Colors.red),
                     ),
                     child: const Text(
                       'False',

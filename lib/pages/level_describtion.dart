@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_quiz_s_t_tt9/modules/level_class.dart';
-import 'package:multi_quiz_s_t_tt9/pages/true_false_q_screen.dart';
 
-import '../constants.dart';
 import '../widgets/my_outline_btn.dart';
 
 class LevelDescription extends StatelessWidget {
@@ -66,7 +64,7 @@ class LevelDescription extends StatelessWidget {
               ),
               Text(
                 levelInfo.title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 32,
                   fontFamily: 'Sf-Pro-Text',
                   color: Colors.white,
@@ -75,7 +73,7 @@ class LevelDescription extends StatelessWidget {
               ),
               Text(
                 ' ${levelInfo.descreption!}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontFamily: 'Sf-Pro-Text',
                   color: Colors.white60,
@@ -88,7 +86,7 @@ class LevelDescription extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(context, levelInfo.routeName);
                   },
-                  style: ElevatedButton.styleFrom
+                  style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
@@ -101,7 +99,7 @@ class LevelDescription extends StatelessWidget {
                       child: Text(
                         'Game',
                         style: TextStyle(
-                            color: levelInfo.colors![0],
+                            color: levelInfo.colors[0],
                             fontWeight: FontWeight.w500,
                             fontSize: 18),
                       ),

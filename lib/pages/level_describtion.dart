@@ -88,7 +88,7 @@ class LevelDescription extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(context, levelInfo.routeName);
                   },
-                  style: ElevatedButton.styleFrom(
+                  style: ElevatedButton.styleFrom
                     backgroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),

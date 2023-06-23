@@ -2,23 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:multi_quiz_s_t_tt9/constants.dart';
 import 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';
 
+import '../modules/level_class.dart';
+
 class MyLevelWidget extends StatelessWidget {
   final Function() function;
-
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final String image;
-  final List<Color> colors;
+  final level mylevel;
 
   const MyLevelWidget({
     Key? key,
     required this.function,
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    required this.image,
-    required this.colors,
+    required this.mylevel,
   }) : super(key: key);
 
   @override
@@ -34,7 +27,7 @@ class MyLevelWidget extends StatelessWidget {
             padding: EdgeInsets.all(24),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: colors,
+                colors: mylevel.colors,
               ),
               borderRadius: BorderRadius.circular(30),
             ),
@@ -45,7 +38,7 @@ class MyLevelWidget extends StatelessWidget {
                   height: 44,
                   width: 44,
                   child: MYOutlineBtn(
-                    icon: icon,
+                    icon: mylevel.icon!,
                     iconColor: Colors.white,
                     bColor: Colors.white,
                     function: () {},
@@ -58,7 +51,7 @@ class MyLevelWidget extends StatelessWidget {
                   height: 12,
                 ),
                 Text(
-                  subtitle,
+                  mylevel.subtitle,
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.white60,
@@ -69,7 +62,7 @@ class MyLevelWidget extends StatelessWidget {
                   height: 4,
                 ),
                 Text(
-                  title,
+                  mylevel.title,
                   style: TextStyle(
                     fontSize: 32,
                     color: Colors.white,
@@ -82,7 +75,7 @@ class MyLevelWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(right: 28.0),
-            child: Image.asset(image),
+            child: Image.asset(mylevel.image!),
           ),
         ],
       ),

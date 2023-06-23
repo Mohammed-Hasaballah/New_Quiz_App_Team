@@ -4,6 +4,7 @@ import 'package:multi_quiz_s_t_tt9/modules/level_class.dart';
 import 'package:multi_quiz_s_t_tt9/pages/level_describtion.dart';
 import 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';
 
+import '../modules/level_class.dart';
 import '../widgets/my_level_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,9 +18,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<level> levels = [
     level(
-      title: 'True or False',
+      title: 'True or false',
       subtitle: 'Level 1',
-      descreption: 'True or False',
+      descreption: 'Rise Up Your IQ',
       image: 'assets/images/bags.png',
       icon: Icons.check,
       colors: [kL1, kL12],
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     level(
       title: 'Multiple Choice',
       subtitle: 'Level 2',
-      descreption: 'Rise Up',
+      descreption: 'Rise Up Your IQ',
       image: 'assets/images/ballon-s.png',
       icon: Icons.play_arrow,
       colors: [kL2, kL22],
@@ -58,71 +59,51 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Let\'s Play',
-                style: TextStyle(
-                  fontSize: 32,
-                  color: kRedFont,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: kFontFamily,
-                ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Let\'s Play',
+              style: TextStyle(
+                fontSize: 32,
+                color: kRedFont,
+                fontWeight: FontWeight.bold,
+                fontFamily: kFontFamily,
               ),
-              const SizedBox(
-                height: 8,
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            const Text(
+              'Be the First!',
+              style: TextStyle(
+                fontSize: 18,
+                color: kGreyFont,
+                fontFamily: kFontFamily,
               ),
-              const Text(
-                'Be the First!',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: kGreyFont,
-                  fontFamily: kFontFamily,
-                ),
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              MyLevelWidget(
-                function: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const LevelDescription();
+            ),
+            const SizedBox(
+              height: 24,
+            ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: levels.length,
+                itemBuilder: (context, index) {
+                  return MyLevelWidget(
+                      function: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LevelDescription(
+                                    levelInfo: levels[index])));
                       },
-                    ),
-                  );
+                      mylevel: levels[index]);
                 },
-                icon: Icons.check,
-                title: 'True or False',
-                subtitle: 'Level 1',
-                image: 'assets/images/bags.png',
-                colors: const [kL1, kL12],
               ),
-              MyLevelWidget(
-                function: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const LevelDescription();
-                      },
-                    ),
-                  );
-                },
-                icon: Icons.play_arrow,
-                title: 'Multiple Choice',
-                subtitle: 'Level 2',
-                image: 'assets/images/ballon-s.png',
-                colors: const [kL2, kL22],
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

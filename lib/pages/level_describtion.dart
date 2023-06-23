@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:multi_quiz_s_t_tt9/modules/level_class.dart';
 import 'package:multi_quiz_s_t_tt9/pages/true_false_q_screen.dart';
 
 import '../constants.dart';
 import '../widgets/my_outline_btn.dart';
 
 class LevelDescription extends StatelessWidget {
-  const LevelDescription({Key? key}) : super(key: key);
+  final level levelInfo;
+  const LevelDescription({
+    Key? key,
+    required this.levelInfo,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +18,9 @@ class LevelDescription extends StatelessWidget {
     var questionsCount = 10;
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              kBlueBg,
-              kL2,
-            ],
+            colors: levelInfo.colors,
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -48,7 +50,7 @@ class LevelDescription extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: Center(
-                  child: Image.asset('assets/images/ballon-b.png'),
+                  child: Image.asset(levelInfo.image!),
                 ),
               ),
               Text(
@@ -62,8 +64,8 @@ class LevelDescription extends StatelessWidget {
               const SizedBox(
                 height: 8,
               ),
-              const Text(
-                'In Which City of Germany Is the Largest Port?',
+              Text(
+                levelInfo.title,
                 style: TextStyle(
                   fontSize: 32,
                   fontFamily: 'Sf-Pro-Text',
@@ -71,8 +73,8 @@ class LevelDescription extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const Text(
-                'question  dhjvajak jklfsakljvabvjkfabjsk \n cdklbvcjksabcddhsaj',
+              Text(
+                ' ${levelInfo.descreption!}',
                 style: TextStyle(
                   fontSize: 18,
                   fontFamily: 'Sf-Pro-Text',
@@ -84,12 +86,7 @@ class LevelDescription extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 12),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => TrueFalseQuiz(),
-                      ),
-                    );
+                    Navigator.pushNamed(context, levelInfo.routeName);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
@@ -99,12 +96,12 @@ class LevelDescription extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         vertical: 12, horizontal: 16),
                   ),
-                  child: const Expanded(
+                  child: Expanded(
                     child: Center(
                       child: Text(
                         'Game',
                         style: TextStyle(
-                            color: kL2,
+                            color: levelInfo.colors![0],
                             fontWeight: FontWeight.w500,
                             fontSize: 18),
                       ),

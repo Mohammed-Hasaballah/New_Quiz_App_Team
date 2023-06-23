@@ -1,0 +1,26 @@
+{
+    "sourceFile": "lib/widgets/my_outline_btn.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1687526602562,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1687526607628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n           ),\r\n           side: MaterialStatePropertyAll(\r\n             BorderSide(color: bColor),\r\n           ),\r\n-          padding: MaterialStatePropertyAll(EdgeInsets.all(12))),\r\n+          padding: MaterialStatePropertyAll(EdgeInsets.all(8))),\r\n       child: Icon(\r\n         icon,\r\n         color: iconColor,\r\n       ),\r\n"
+                },
+                {
+                    "date": 1687526613539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n           ),\r\n           side: MaterialStatePropertyAll(\r\n             BorderSide(color: bColor),\r\n           ),\r\n-          padding: const MaterialStatePropertyAll(EdgeInsets.all(8))),\r\n+          padding: const MaterialStatePropertyAll(EdgeInsets.all(2))),\r\n       child: Icon(\r\n         icon,\r\n         color: iconColor,\r\n       ),\r\n"
+                }
+            ],
+            "date": 1687526602562,
+            "name": "Commit-0",
+            "content": "import 'package:flutter/material.dart';\r\n\r\nclass MYOutlineBtn extends StatelessWidget {\r\n  final IconData icon;\r\n  final Color bColor;\r\n  final Color iconColor;\r\n  final OutlinedBorder shapeBorder;\r\n  final Function() function;\r\n  const MYOutlineBtn({\r\n    Key? key,\r\n    required this.icon,\r\n    required this.function,\r\n    required this.bColor,\r\n    required this.iconColor,\r\n    this.shapeBorder = const CircleBorder(),\r\n  }) : super(key: key);\r\n\r\n  @override\r\n  Widget build(BuildContext context) {\r\n    return OutlinedButton(\r\n      onPressed: function,\r\n      child: Icon(\r\n        icon,\r\n        color: iconColor,\r\n      ),\r\n      style: ButtonStyle().copyWith(\r\n          shape: MaterialStatePropertyAll(\r\n            shapeBorder,\r\n          ),\r\n          side: MaterialStatePropertyAll(\r\n            BorderSide(color: bColor),\r\n          ),\r\n          padding: MaterialStatePropertyAll(EdgeInsets.all(12))),\r\n    );\r\n  }\r\n}\r\n"
+        }
+    ]
+}

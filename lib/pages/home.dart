@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       title: 'Multiple Choice',
       subtitle: 'Level 2',
       descreption: 'Rise Up Your IQ',
-      image: 'assets/images/ballon-s.png',
+      image: 'assets/images/ballon-b.png',
       icon: Icons.play_arrow,
       colors: [kL2, kL22],
       routeName: '/level2',

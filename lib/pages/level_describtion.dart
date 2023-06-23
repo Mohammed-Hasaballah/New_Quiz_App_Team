@@ -52,7 +52,7 @@ class LevelDescription extends StatelessWidget {
                 ),
               ),
               Text(
-                'question $questionNumber of $questionsCount',
+                levelInfo.subtitle,
                 style: const TextStyle(
                   fontSize: 18,
                   fontFamily: 'Sf-Pro-Text',
@@ -94,15 +94,13 @@ class LevelDescription extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         vertical: 12, horizontal: 16),
                   ),
-                  child: Expanded(
-                    child: Center(
-                      child: Text(
-                        'Game',
-                        style: TextStyle(
-                            color: levelInfo.colors[0],
-                            fontWeight: FontWeight.w500,
-                            fontSize: 18),
-                      ),
+                  child: Center(
+                    child: Text(
+                      'Game',
+                      style: TextStyle(
+                          color: levelInfo.colors[0],
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18),
                     ),
                   ),
                 ),

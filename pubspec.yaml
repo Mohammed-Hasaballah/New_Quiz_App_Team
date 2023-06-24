@@ -8,6 +8,7 @@ version: 1.0.0+1
 
 environment:
   sdk: '>=2.19.6 <3.0.0'
+  
 
 dependencies:
   flutter:
@@ -15,6 +16,7 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
+  rflutter_alert: ^2.0.7
 
 dev_dependencies:
   flutter_test:

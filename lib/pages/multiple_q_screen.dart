@@ -1,24 +1,39 @@
+import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:multi_quiz_s_t_tt9/pages/home.dart';
-import 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';
-
+import 'package:rflutter_alert/rflutter_alert.dart';
 import '../constants.dart';
+import '../modules/multipe_choice/choice_handel.dart';
+import '../modules/multipe_choice/quizBrainMultiple.dart';
 
-class MultiQScreen extends StatefulWidget {
-  const MultiQScreen({Key? key}) : super(key: key);
-
+// ignore: camel_case_types
+class quiz_screen extends StatefulWidget {
+  const quiz_screen({super.key});
   @override
-  State<MultiQScreen> createState() => _MultiQScreenState();
+  State<quiz_screen> createState() => _quiz_screenState();
 }
 
-class _MultiQScreenState extends State<MultiQScreen> {
-  @override
+class _quiz_screenState extends State<quiz_screen> {
+ 
+  bring_question quize=bring_question();
+
+  int score=0;
+  int count=01;
+
+Color color=Colors.white;
+Color color1=Colors.white;
+Color color2=Colors.white;
+
+   int questionNumber = 1;
+   
+    late int  questionsCount   ;
+    @override
+
   Widget build(BuildContext context) {
-    var questionNumber = 5;
-    var questionsCount = 10;
-    return Scaffold(
+    questionsCount=quize.gitlingth();
+   return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
               kBlueBg,
@@ -29,78 +44,53 @@ class _MultiQScreenState extends State<MultiQScreen> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 74, left: 24, right: 24),
+          padding: const EdgeInsets.only(top: 56, left: 24, right: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  ///-------------------------------------the crose button------
                   SizedBox(
                     height: 44,
                     width: 44,
-                    child: MYOutlineBtn(
-                      icon: Icons.close,
-                      iconColor: Colors.white,
-                      bColor: Colors.white,
-                      function: () {
-                        // Navigator.pop(context);
-                        // Navigator.pop(context);
-
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomePage(),
-                          ),
-                          (route) => false,
-                        );
+                    child: OutlinedButton(
+                      onPressed: () {
+                         Navigator.pop(context);
                       },
+                     style:const ButtonStyle().copyWith(
+                      shape: const MaterialStatePropertyAll(
+                        CircleBorder(),
+                      ),
+                      side: const MaterialStatePropertyAll(
+                        BorderSide(color: Colors.white),
+                        ),
+                        padding:const MaterialStatePropertyAll(EdgeInsets.all(8)),
+                        
+                     ),
+                     child: const Icon(Icons.close,
+                     color: Colors.white,),
                     ),
                   ),
-                  // OutlinedButton(
-                  //   onPressed: () {},
-                  //   style: ButtonStyle().copyWith(
-                  //     shape: MaterialStatePropertyAll(
-                  //       RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(25),
-                  //       ),
-                  //     ),
-                  //     side: MaterialStatePropertyAll(
-                  //       BorderSide(color: Colors.white),
-                  //     ),
-                  //   ),
-                  //   child: Row(
-                  //     children: [
-                  //       Icon(
-                  //         Icons.favorite,
-                  //         color: Colors.white,
-                  //       ),
-                  //       SizedBox(
-                  //         width: 8,
-                  //       ),
-                  //       const Text(
-                  //         '3',
-                  //         style: TextStyle(color: Colors.white),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
+                 
+//-----------------------------------the progress indicator-----------
 
-                  Stack(
+                   Stack(
                     alignment: Alignment.center,
                     children: [
-                      SizedBox(
+                       SizedBox(
                         height: 56,
                         width: 56,
                         child: CircularProgressIndicator(
-                          value: 0.7,
+                          value: (count)/10,
                           color: Colors.white,
                           backgroundColor: Colors.white12,
                         ),
                       ),
                       Text(
-                        '05',
-                        style: TextStyle(
+                        "${count}",
+                        style: const TextStyle(
                           fontFamily: 'Sf-Pro-Text',
                           fontSize: 24,
                           color: Colors.white,
@@ -109,39 +99,44 @@ class _MultiQScreenState extends State<MultiQScreen> {
                       )
                     ],
                   ),
-
+//-----------------------------------like button------
                   OutlinedButton(
                     onPressed: () {},
-                    child: Icon(
-                      Icons.favorite,
-                      color: Colors.white,
-                    ),
                     style: OutlinedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        side: BorderSide(color: Colors.white)),
+                        side: const BorderSide(color: Colors.white)),
+                         child: const Icon(
+                      Icons.favorite,
+                      color: Colors.white,
+                    ),
                   )
                 ],
               ),
+              //------------------image ------
               Expanded(
                 child: Center(
                   child: Image.asset('assets/images/ballon-b.png'),
                 ),
               ),
+              //----------------number of question---------
               Text(
-                'question $questionNumber of $questionsCount',
-                style: TextStyle(
+                'question ${count} of $questionsCount',
+
+                style: const TextStyle(
                   fontSize: 18,
                   fontFamily: 'Sf-Pro-Text',
                   color: Colors.white60,
                 ),
+                //-----------------------------------------
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
-              Text(
-                'In Which City of Germany Is the Largest Port?',
+              ///--------------- text of qastion--------------------
+               Text(
+                quize.gitqustiontext(),
                 style: TextStyle(
                   fontSize: 32,
                   fontFamily: 'Sf-Pro-Text',
@@ -149,115 +144,145 @@ class _MultiQScreenState extends State<MultiQScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              //-----------------------------
+              const SizedBox(
                 height: 48,
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  ),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 24,
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            'Bremen',
-                            style: TextStyle(
-                                color: kL2,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18),
-                          ),
-                        ),
-                      ),
-                      Icon(
-                        Icons.check_rounded,
-                        color: kL2,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  ),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 24,
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            'Bremen',
-                            style: TextStyle(
-                                color: kL2,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18),
-                          ),
-                        ),
-                      ),
-                      Icon(
-                        Icons.check_rounded,
-                        color: kL2,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kG1,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                  ),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        width: 24,
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            'Gaza',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18),
-                          ),
-                        ),
-                      ),
-                      Icon(
-                        Icons.check_rounded,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
+              //------------------choise---------
+
+              //------------------choise1---------
+              
+ choise(
+  quize.gitchoise(0),
+   color,
+    0,
+     quize.questionnumber, (){
+if (0==quize.gitqustionanswer()){
+  setState(() {
+    color=kG1;
+    score++;
+  });
+}
+else{
+   setState(() {
+   color=kRedFont;
+  });
+}
+
+              
+        }),
+
+              choise(quize.gitchoise(1), color1, 1, quize.questionnumber,(){
+if (1==quize.gitqustionanswer()){
+ 
+  setState(() {
+    color1=kG1;
+    score++;
+  });
+}
+else{
+   setState(() {
+   color1=kRedFont;
+  });
+}
+
+//  if (quize.isfinished()) {
+//                     print("is fine-----------");
+                   
+//                     setState(() {
+//                     color=Colors.white;
+//                     color1=Colors.white;
+//                     color2=Colors.white;
+//                       quize.reset();
+//                       ;
+                   
+//                Alert(context: context, title: "finished", desc: "the quize is finished. and your scor $score/${quize.gitlingth()}").show();
+//                      score=0;
+//                       count=1;
+//                       });
+//                }
+               
+// else{
+//     Timer(const Duration(seconds: 1), () {
+//     setState(() {
+//       count++;
+//       quize.nextquestion();
+//       color=Colors.white;
+//       color1=Colors.white;
+//       color2=Colors.white;
+//     });
+//  });
+//   }  
+                    }),
+
+              choise(quize.gitchoise(2), color2, 2, quize.questionnumber,(){
+if (2==quize.gitqustionanswer()){
+ 
+  setState(() {
+    color2=kG1;
+    score++;
+  });
+}
+else{
+   setState(() {
+   color2=kRedFont;
+  });
+}
+
+//  if (quize.isfinished()) {
+//                     print("is fine-----------");
+                    
+//                     Alert(context: context, title: "finished", desc: "the quize is finished. and your scor $score/${quize.gitlingth()}").show();
+//                     setState(() {
+//                       quize.reset();
+//                       score=0;
+//                       count=1;
+//                     });}
+// else{
+//     Timer(const Duration(seconds: 1), () {
+//     setState(() {
+//       count++;
+//       quize.nextquestion();
+//       color=Colors.white;
+//       color1=Colors.white;
+//       color2=Colors.white;
+//     });
+//  });
+//   }  
+
+                    }),
+
+              
+      
+TextButton(onPressed: (){
+  if (quize.isfinished()) {
+                    print("is fine-----------");
+                    Alert(context: context, title: "finished", desc: "the quize is finished. and your scor $score/${quize.gitlingth()}").show();
+                    setState(() {
+                      
+                      quize.reset();
+                      score=0;
+                      count=1;
+                      color=Colors.white;
+                      color1=Colors.white;
+                      color2=Colors.white;
+                    });
+                    }
+  else{
+    
+    setState(() {
+      count++;
+      quize.nextquestion();
+      color=Colors.white;
+      color1=Colors.white;
+      color2=Colors.white;
+    });
+ 
+  }     
+
+}, child: Text("next",
+style:TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white) ,)),
+              const SizedBox(
                 height: 48,
               ),
             ],

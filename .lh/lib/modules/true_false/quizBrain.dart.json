@@ -1,0 +1,42 @@
+{
+    "sourceFile": "lib/modules/true_false/quizBrain.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1687624438689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1687624449407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,11 @@\n     Question(\r\n       'A slug\\'s blood is green.',\r\n       true,\r\n     ),\r\n-    \r\n+    Question(\r\n+      'Buzz Aldrin\\'s mother\\'s maiden name was \\\"Moon\\\".',\r\n+    )\r\n   ];\r\n \r\n   String getQuestionText() {\r\n     return _questionBank[_questionNumber].questionText;\r\n"
+                },
+                {
+                    "date": 1687624455917,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,11 @@\n       true,\r\n     ),\r\n     Question(\r\n       'Buzz Aldrin\\'s mother\\'s maiden name was \\\"Moon\\\".',\r\n-    )\r\n+      true,\r\n+    ), \r\n+    \r\n   ];\r\n \r\n   String getQuestionText() {\r\n     return _questionBank[_questionNumber].questionText;\r\n"
+                },
+                {
+                    "date": 1687624463035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,10 @@\n     Question(\r\n       'Buzz Aldrin\\'s mother\\'s maiden name was \\\"Moon\\\".',\r\n       true,\r\n     ), \r\n-    \r\n+    Question(\r\n+      'The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.',\r\n   ];\r\n \r\n   String getQuestionText() {\r\n     return _questionBank[_questionNumber].questionText;\r\n"
+                },
+                {
+                    "date": 1687624468730,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,10 @@\n       true,\r\n     ), \r\n     Question(\r\n       'The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.',\r\n+      false,\r\n+    ),\r\n   ];\r\n \r\n   String getQuestionText() {\r\n     return _questionBank[_questionNumber].questionText;\r\n"
+                },
+                {
+                    "date": 1687624966576,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n \r\n class QuizBrain {\r\n   int _questionNumber = 0;\r\n \r\n-  final List<Question> _questionBank = [\r\n+  final List<Question> questionBank = [\r\n     Question(\r\n       'You can lead a cow down stairs but not up stairs.',\r\n       false,\r\n     ),\r\n@@ -16,11 +16,11 @@\n       'A slug\\'s blood is green.',\r\n       true,\r\n     ),\r\n     Question(\r\n-      'Buzz Aldrin\\'s mother\\'s maiden name was \\\"Moon\\\".',\r\n+      'Buzz Aldrin\\'s mother\\'s maiden name was \"Moon\".',\r\n       true,\r\n-    ), \r\n+    ),\r\n     Question(\r\n       'The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.',\r\n       false,\r\n     ),\r\n"
+                },
+                {
+                    "date": 1687624972624,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,23 +26,23 @@\n     ),\r\n   ];\r\n \r\n   String getQuestionText() {\r\n-    return _questionBank[_questionNumber].questionText;\r\n+    return questionBank[_questionNumber].questionText;\r\n   }\r\n \r\n   bool getQuestionAnswer() {\r\n-    return _questionBank[_questionNumber].questionAnswer;\r\n+    return questionBank[_questionNumber].questionAnswer;\r\n   }\r\n \r\n   void nextQuestion() {\r\n-    if (_questionNumber < _questionBank.length - 1) {\r\n+    if (_questionNumber < questionBank.length - 1) {\r\n       _questionNumber++;\r\n     }\r\n   }\r\n \r\n   bool isFinished() {\r\n-    if (_questionNumber >= _questionBank.length - 1) {\r\n+    if (_questionNumber >= questionBank.length - 1) {\r\n       return true;\r\n     } else {\r\n       return false;\r\n     }\r\n"
+                }
+            ],
+            "date": 1687624438689,
+            "name": "Commit-0",
+            "content": "import 'package:multi_quiz_s_t_tt9/modules/true_false/question.dart';\r\n\r\nclass QuizBrain {\r\n  int _questionNumber = 0;\r\n\r\n  final List<Question> _questionBank = [\r\n    Question(\r\n      'You can lead a cow down stairs but not up stairs.',\r\n      false,\r\n    ),\r\n    Question(\r\n      'Approximately one quarter of human bones are in the feet.',\r\n      true,\r\n    ),\r\n    Question(\r\n      'A slug\\'s blood is green.',\r\n      true,\r\n    ),\r\n    \r\n  ];\r\n\r\n  String getQuestionText() {\r\n    return _questionBank[_questionNumber].questionText;\r\n  }\r\n\r\n  bool getQuestionAnswer() {\r\n    return _questionBank[_questionNumber].questionAnswer;\r\n  }\r\n\r\n  void nextQuestion() {\r\n    if (_questionNumber < _questionBank.length - 1) {\r\n      _questionNumber++;\r\n    }\r\n  }\r\n\r\n  bool isFinished() {\r\n    if (_questionNumber >= _questionBank.length - 1) {\r\n      return true;\r\n    } else {\r\n      return false;\r\n    }\r\n  }\r\n\r\n  void reset() {\r\n    _questionNumber = 0;\r\n  }\r\n}\r\n"
+        }
+    ]
+}

@@ -1,5 +1,3 @@
-import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import '../constants.dart';
@@ -113,15 +111,28 @@ class _quiz_screenState extends State<quiz_screen> {
                   )
                 ],
               ),
+              const SizedBox(
+                height: 24,
+              ),
               //------------------image ------
               Expanded(
                 child: Center(
-                  child: Image.asset('assets/images/ballon-b.png'),
+                  child: SizedBox(
+                    height: 500,
+                    width: 500,
+                    child: Image.asset(
+                      'assets/images/ballon-b.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
                 ),
+              ),
+              const SizedBox(
+                height: 32,
               ),
               //----------------number of question---------
               Text(
-                'question $count of $questionsCount',
+                'question $count of ${quize.multiQuestions.length}',
                 style: const TextStyle(
                   fontSize: 18,
                   fontFamily: 'Sf-Pro-Text',
@@ -147,122 +158,14 @@ class _quiz_screenState extends State<quiz_screen> {
               const SizedBox(
                 height: 48,
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 12, horizontal: 16),
-                  ),
-                  child: const Row(
-                    children: [
-                      SizedBox(
-                        width: 24,
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            'Bremen',
-                            style: TextStyle(
-                                color: kL2,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18),
-                          ),
-                        ),
-                      ),
-                      Icon(
-                        Icons.check_rounded,
-                        color: kL2,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 12, horizontal: 16),
-                  ),
-                  child: const Row(
-                    children: [
-                      SizedBox(
-                        width: 24,
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            'Bremen',
-                            style: TextStyle(
-                                color: kL2,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18),
-                          ),
-                        ),
-                      ),
-                      Icon(
-                        Icons.check_rounded,
-                        color: kL2,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kG1,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 12, horizontal: 16),
-                  ),
-                  child: const Row(
-                    children: [
-                      SizedBox(
-                        width: 24,
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            'Gaza',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18),
-                          ),
-                        ),
-                      ),
-                      Icon(
-                        Icons.check_rounded,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
 
               //-----------------------------
               const SizedBox(
                 height: 48,
               ),
-              //------------------choise---------
+              //------------------choices---------
 
-              //------------------choise1---------
+              //------------------choice1---------
 
               choise(quize.gitchoise(0), color, 0, quize.questionnumber, () {
                 if (0 == quize.gitqustionanswer()) {
@@ -278,7 +181,7 @@ class _quiz_screenState extends State<quiz_screen> {
               }),
 
               choise(quize.gitchoise(1), color1, 1, quize.questionnumber, () {
-                if (1 == quize.gitqustionanswer()) {
+                if (quize.gitqustionanswer() == 1) {
                   setState(() {
                     color1 = kG1;
                     score++;
@@ -288,38 +191,10 @@ class _quiz_screenState extends State<quiz_screen> {
                     color1 = kRedFont;
                   });
                 }
-
-//  if (quize.isfinished()) {
-//                     print("is fine-----------");
-
-//                     setState(() {
-//                     color=Colors.white;
-//                     color1=Colors.white;
-//                     color2=Colors.white;
-//                       quize.reset();
-//                       ;
-
-//                Alert(context: context, title: "finished", desc: "the quize is finished. and your scor $score/${quize.gitlingth()}").show();
-//                      score=0;
-//                       count=1;
-//                       });
-//                }
-
-// else{
-//     Timer(const Duration(seconds: 1), () {
-//     setState(() {
-//       count++;
-//       quize.nextquestion();
-//       color=Colors.white;
-//       color1=Colors.white;
-//       color2=Colors.white;
-//     });
-//  });
-//   }
               }),
 
               choise(quize.gitchoise(2), color2, 2, quize.questionnumber, () {
-                if (2 == quize.gitqustionanswer()) {
+                if (quize.gitqustionanswer() == 2) {
                   setState(() {
                     color2 = kG1;
                     score++;
@@ -329,64 +204,62 @@ class _quiz_screenState extends State<quiz_screen> {
                     color2 = kRedFont;
                   });
                 }
-
-//  if (quize.isfinished()) {
-//                     print("is fine-----------");
-
-//                     Alert(context: context, title: "finished", desc: "the quize is finished. and your scor $score/${quize.gitlingth()}").show();
-//                     setState(() {
-//                       quize.reset();
-//                       score=0;
-//                       count=1;
-//                     });}
-// else{
-//     Timer(const Duration(seconds: 1), () {
-//     setState(() {
-//       count++;
-//       quize.nextquestion();
-//       color=Colors.white;
-//       color1=Colors.white;
-//       color2=Colors.white;
-//     });
-//  });
-//   }
               }),
 
-              TextButton(
-                  onPressed: () {
-                    if (quize.isfinished()) {
-                      print("is fine-----------");
-                      Alert(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        if (quize.isfinished()) {
+                          Alert(
                               context: context,
-                              title: "finished",
-                              desc:
-                                  "the quize is finished. and your scor $score/${quize.gitlingth()}")
-                          .show();
-                      setState(() {
-                        quize.reset();
-                        score = 0;
-                        count = 1;
-                        color = Colors.white;
-                        color1 = Colors.white;
-                        color2 = Colors.white;
-                      });
-                    } else {
-                      setState(() {
-                        count++;
-                        quize.nextquestion();
-                        color = Colors.white;
-                        color1 = Colors.white;
-                        color2 = Colors.white;
-                      });
-                    }
-                  },
-                  child: const Text(
-                    "next",
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  )),
+                              title: "Quiz Finished",
+                              desc: "your score $score/${quize.gitlingth()}",
+                              buttons: [
+                                DialogButton(
+                                    child: const Text(
+                                      "Close",
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const HomePage(),
+                                        ),
+                                        (route) => false,
+                                      );
+                                    }),
+                              ]).show();
+                          setState(() {
+                            quize.reset();
+                            score = 0;
+                            count = 1;
+                            color = Colors.white;
+                            color1 = Colors.white;
+                            color2 = Colors.white;
+                          });
+                        } else {
+                          setState(() {
+                            count++;
+                            quize.nextquestion();
+                            color = Colors.white;
+                            color1 = Colors.white;
+                            color2 = Colors.white;
+                          });
+                        }
+                      },
+                      child: const Text(
+                        "next",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                        textAlign: TextAlign.center,
+                      )),
+                ],
+              ),
               const SizedBox(
                 height: 48,
               ),

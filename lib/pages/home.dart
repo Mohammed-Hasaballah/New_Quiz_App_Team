@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       title: 'Multiple Choice',
       subtitle: 'Level 2',
       descreption: 'Rise Up Your IQ',
-      image: 'assets/images/ballon-b.png',
+      image: 'assets/images/ballon-s.png',
       icon: Icons.play_arrow,
       colors: [kL2, kL22],
       routeName: '/level2',
@@ -40,28 +40,39 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        actions: [
-          MYOutlineBtn(
-            icon: Icons.favorite,
-            iconColor: kBlueIcon,
-            bColor: kGreyFont.withOpacity(0.5),
-            function: () {},
-          ),
-          MYOutlineBtn(
-              icon: Icons.person,
-              iconColor: kBlueIcon,
-              bColor: kGreyFont.withOpacity(0.5),
-              function: () {}),
-          const SizedBox(
-            width: 16,
-          )
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SizedBox(
+                  height: 44,
+                  width: 44,
+                  child: MYOutlineBtn(
+                    icon: Icons.favorite,
+                    iconColor: kBlueIcon,
+                    bColor: kGreyFont.withOpacity(0.5),
+                    function: () {},
+                  ),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                SizedBox(
+                  width: 44,
+                  height: 44,
+                  child: MYOutlineBtn(
+                      icon: Icons.person,
+                      iconColor: kBlueIcon,
+                      bColor: kGreyFont.withOpacity(0.5),
+                      function: () {}),
+                ),
+              ],
+            ),
             const Text(
               'Let\'s Play',
               style: TextStyle(

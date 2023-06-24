@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import '../constants.dart';
 import '../modules/true_false/quizBrain.dart';
 import '../widgets/my_outline_btn.dart';
@@ -17,10 +18,11 @@ class TrueFalseQuiz extends StatefulWidget {
 class _TrueFalseQuizState extends State<TrueFalseQuiz> {
   QuizBrain quizBrain = QuizBrain();
   List<Icon> scoreKeeper = [];
-  int? _choice;
+  int result = 0;
   int counter = 10;
+  late Timer timer;
 
-  void checkAnswer(bool userChoice) {
+  void checkAnswer(bool? userChoice) {
     bool correctAnswer = quizBrain.getQuestionAnswer();
     setState(() {
       if (correctAnswer == userChoice) {
@@ -30,6 +32,7 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
             color: Colors.green,
           ),
         );
+        result++;
       } else {
         scoreKeeper.add(
           const Icon(
@@ -42,9 +45,32 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
 
     if (quizBrain.isFinished()) {
       print('finished');
+      timer.cancel();
 
       Timer(const Duration(seconds: 1), () {
-        // Alert(context: context, title: "Finished", desc: "you are done").show();
+        Alert(
+            context: context,
+            title: "Quiz Finished",
+            desc: "your score $result/${quizBrain.questionBank.length}",
+            buttons: [
+              DialogButton(
+                  child: const Text(
+                    "Close",
+                  ),
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
+                      (route) => false,
+                    );
+                    setState(() {
+                      quizBrain.reset();
+                      scoreKeeper.clear();
+                    });
+                  }),
+            ]).show();
         setState(() {
           quizBrain.reset();
           scoreKeeper.clear();
@@ -52,19 +78,20 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
       });
     } else {
       quizBrain.nextQuestion();
+      counter = 10;
     }
   }
 
   @override
   void initState() {
-    Timer.periodic(const Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         counter--;
       });
       if (counter == 0) {
-        // timer.cancel();
+        // quizBrain.nextQuestion();
+        checkAnswer(null);
         counter = 10;
-        quizBrain.nextQuestion();
       }
     });
     super.initState();
@@ -106,9 +133,6 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
                       iconColor: Colors.white,
                       bColor: Colors.white,
                       function: () {
-                        // Navigator.pop(context);
-                        // Navigator.pop(context);
-
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(

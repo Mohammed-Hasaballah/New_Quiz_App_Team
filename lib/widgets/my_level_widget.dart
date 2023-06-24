@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:multi_quiz_s_t_tt9/constants.dart';
 import 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';
 
-import '../modules/level_class.dart';
+import 'level_class.dart';
 
 class MyLevelWidget extends StatelessWidget {
   final Function() function;
-  final level mylevel;
+  final Level mylevel;
 
   const MyLevelWidget({
     Key? key,

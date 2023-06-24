@@ -1,34 +1,99 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import '../constants.dart';
-import '../modules/multipe_choice/choice_handel.dart';
-import '../modules/multipe_choice/quizBrainMultiple.dart';
+import '../modules/multipe_choice/choice_handle.dart';
+import '../modules/multipe_choice/multi_q_brain.dart';
 import '../widgets/my_outline_btn.dart';
 import 'home.dart';
 
-// ignore: camel_case_types
-class quiz_screen extends StatefulWidget {
-  const quiz_screen({super.key});
+class MultiQuizScreen extends StatefulWidget {
+  const MultiQuizScreen({super.key});
   @override
-  State<quiz_screen> createState() => _quiz_screenState();
+  State<MultiQuizScreen> createState() => _MultiQuizScreenState();
 }
 
-class _quiz_screenState extends State<quiz_screen> {
-  bring_question quize = bring_question();
+class _MultiQuizScreenState extends State<MultiQuizScreen> {
+  MultibleQBrain quizeBrain = MultibleQBrain();
 
   int score = 0;
-  int count = 01;
 
-  Color color = Colors.white;
-  Color color1 = Colors.white;
-  Color color2 = Colors.white;
-
-  int questionNumber = 1;
+  Color firstChoiceColor = Colors.white;
+  Color secondChoiceColor = Colors.white;
+  Color thirdChoiceColor = Colors.white;
 
   late int questionsCount;
+  int questionNumber = 1;
+
+  late Timer timer;
+  int counter = 10;
+  bool buttonEnabled = true;
+  @override
+  void initState() {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        counter--;
+      });
+      if (counter == 0) {
+        goToNextQuestion();
+      }
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void goToNextQuestion() {
+    if (quizeBrain.isFinished()) {
+      Alert(
+          context: context,
+          title: "Quiz Finished",
+          desc: "your score $score/${quizeBrain.getLength()}",
+          buttons: [
+            DialogButton(
+                child: const Text(
+                  "Close",
+                ),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomePage(),
+                    ),
+                    (route) => false,
+                  );
+                }),
+          ]).show();
+      setState(() {
+        quizeBrain.reset();
+        score = 0;
+        questionNumber = 1;
+        firstChoiceColor = Colors.white;
+        secondChoiceColor = Colors.white;
+        thirdChoiceColor = Colors.white;
+        timer.cancel();
+      });
+    } else {
+      setState(() {
+        questionNumber++;
+        quizeBrain.nextQuestion();
+        firstChoiceColor = Colors.white;
+        secondChoiceColor = Colors.white;
+        thirdChoiceColor = Colors.white;
+        counter = 10;
+        buttonEnabled = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    questionsCount = quize.gitlingth();
+    questionsCount = quizeBrain.getLength();
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -49,7 +114,6 @@ class _quiz_screenState extends State<quiz_screen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ///-------------------------------------the crose button------
                   SizedBox(
                     height: 44,
                     width: 44,
@@ -58,9 +122,6 @@ class _quiz_screenState extends State<quiz_screen> {
                       iconColor: Colors.white,
                       bColor: Colors.white,
                       function: () {
-                        // Navigator.pop(context);
-                        // Navigator.pop(context);
-
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
@@ -71,8 +132,6 @@ class _quiz_screenState extends State<quiz_screen> {
                       },
                     ),
                   ),
-//-----------------------------------the progress indicator-----------
-
                   Stack(
                     alignment: Alignment.center,
                     children: [
@@ -80,13 +139,13 @@ class _quiz_screenState extends State<quiz_screen> {
                         height: 56,
                         width: 56,
                         child: CircularProgressIndicator(
-                          value: (count) / 10,
+                          value: counter / 10,
                           color: Colors.white,
                           backgroundColor: Colors.white12,
                         ),
                       ),
                       Text(
-                        "$count",
+                        counter.toString(),
                         style: const TextStyle(
                           fontFamily: 'Sf-Pro-Text',
                           fontSize: 24,
@@ -96,7 +155,6 @@ class _quiz_screenState extends State<quiz_screen> {
                       )
                     ],
                   ),
-//-----------------------------------like button------
                   OutlinedButton(
                     onPressed: () {},
                     style: OutlinedButton.styleFrom(
@@ -114,7 +172,6 @@ class _quiz_screenState extends State<quiz_screen> {
               const SizedBox(
                 height: 24,
               ),
-              //------------------image ------
               Expanded(
                 child: Center(
                   child: SizedBox(
@@ -130,23 +187,19 @@ class _quiz_screenState extends State<quiz_screen> {
               const SizedBox(
                 height: 32,
               ),
-              //----------------number of question---------
               Text(
-                'question $count of ${quize.multiQuestions.length}',
+                'question $questionNumber of ${quizeBrain.multiQuestions.length}',
                 style: const TextStyle(
                   fontSize: 18,
                   fontFamily: 'Sf-Pro-Text',
                   color: Colors.white60,
                 ),
-                //-----------------------------------------
               ),
               const SizedBox(
                 height: 8,
               ),
-
-              ///--------------- text of qastion--------------------
               Text(
-                quize.gitqustiontext(),
+                quizeBrain.getQustionText(),
                 style: const TextStyle(
                   fontSize: 32,
                   fontFamily: 'Sf-Pro-Text',
@@ -154,101 +207,81 @@ class _quiz_screenState extends State<quiz_screen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-
               const SizedBox(
                 height: 48,
               ),
-
-              //-----------------------------
               const SizedBox(
                 height: 48,
               ),
-              //------------------choices---------
-
-              //------------------choice1---------
-
-              choise(quize.gitchoise(0), color, 0, quize.questionnumber, () {
-                if (0 == quize.gitqustionanswer()) {
-                  setState(() {
-                    color = kG1;
-                    score++;
-                  });
-                } else {
-                  setState(() {
-                    color = kRedFont;
-                  });
-                }
-              }),
-
-              choise(quize.gitchoise(1), color1, 1, quize.questionnumber, () {
-                if (quize.gitqustionanswer() == 1) {
-                  setState(() {
-                    color1 = kG1;
-                    score++;
-                  });
-                } else {
-                  setState(() {
-                    color1 = kRedFont;
-                  });
-                }
-              }),
-
-              choise(quize.gitchoise(2), color2, 2, quize.questionnumber, () {
-                if (quize.gitqustionanswer() == 2) {
-                  setState(() {
-                    color2 = kG1;
-                    score++;
-                  });
-                } else {
-                  setState(() {
-                    color2 = kRedFont;
-                  });
-                }
-              }),
-
+              Choice(
+                choicetext: quizeBrain.getChoice(0),
+                disapledColor: firstChoiceColor,
+                userAnswer: 0,
+                questionNumber: quizeBrain.questionnumber,
+                onPressed: buttonEnabled
+                    ? () {
+                        if (quizeBrain.getQustionAnswer() == 0) {
+                          setState(() {
+                            firstChoiceColor = kG1;
+                            score++;
+                          });
+                        } else {
+                          setState(() {
+                            firstChoiceColor = kRedFont;
+                          });
+                        }
+                        buttonEnabled = false; // Disable clicking on choices
+                      }
+                    : null,
+              ),
+              Choice(
+                choicetext: quizeBrain.getChoice(1),
+                disapledColor: secondChoiceColor,
+                userAnswer: 1,
+                questionNumber: quizeBrain.questionnumber,
+                onPressed: buttonEnabled
+                    ? () {
+                        if (quizeBrain.getQustionAnswer() == 1) {
+                          setState(() {
+                            secondChoiceColor = kG1;
+                            score++;
+                          });
+                        } else {
+                          setState(() {
+                            secondChoiceColor = kRedFont;
+                          });
+                        }
+                        buttonEnabled = false; // Disable clicking on choices
+                      }
+                    : null,
+              ),
+              Choice(
+                choicetext: quizeBrain.getChoice(2),
+                disapledColor: thirdChoiceColor,
+                userAnswer: 2,
+                questionNumber: quizeBrain.questionnumber,
+                onPressed: buttonEnabled
+                    ? () {
+                        if (quizeBrain.getQustionAnswer() == 2) {
+                          setState(() {
+                            thirdChoiceColor = kG1;
+                            score++;
+                          });
+                        } else {
+                          setState(() {
+                            thirdChoiceColor = kRedFont;
+                          });
+                        }
+                        buttonEnabled = false; // Disable clicking on choices
+                      }
+                    : null,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton(
                       onPressed: () {
-                        if (quize.isfinished()) {
-                          Alert(
-                              context: context,
-                              title: "Quiz Finished",
-                              desc: "your score $score/${quize.gitlingth()}",
-                              buttons: [
-                                DialogButton(
-                                    child: const Text(
-                                      "Close",
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const HomePage(),
-                                        ),
-                                        (route) => false,
-                                      );
-                                    }),
-                              ]).show();
-                          setState(() {
-                            quize.reset();
-                            score = 0;
-                            count = 1;
-                            color = Colors.white;
-                            color1 = Colors.white;
-                            color2 = Colors.white;
-                          });
-                        } else {
-                          setState(() {
-                            count++;
-                            quize.nextquestion();
-                            color = Colors.white;
-                            color1 = Colors.white;
-                            color2 = Colors.white;
-                          });
-                        }
+                        goToNextQuestion();
                       },
                       child: const Text(
                         "next",

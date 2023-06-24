@@ -1,0 +1,18 @@
+{
+    "sourceFile": "lib/modules/true_false/true_false_brain.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1687645581447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1687645581447,
+            "name": "Commit-0",
+            "content": "import 'package:multi_quiz_s_t_tt9/modules/true_false/question.dart';\r\n\r\nclass QuizBrain {\r\n  int _questionNumber = 0;\r\n\r\n  final List<Question> questionBank = [\r\n    Question(\r\n      'You can lead a cow down stairs but not up stairs.',\r\n      false,\r\n    ),\r\n    Question(\r\n      'Approximately one quarter of human bones are in the feet.',\r\n      true,\r\n    ),\r\n    Question(\r\n      'A slug\\'s blood is green.',\r\n      true,\r\n    ),\r\n    Question(\r\n      'Buzz Aldrin\\'s mother\\'s maiden name was \"Moon\".',\r\n      true,\r\n    ),\r\n    Question(\r\n      'The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.',\r\n      false,\r\n    ),\r\n  ];\r\n\r\n  String getQuestionText() {\r\n    return questionBank[_questionNumber].questionText;\r\n  }\r\n\r\n  bool getQuestionAnswer() {\r\n    return questionBank[_questionNumber].questionAnswer;\r\n  }\r\n\r\n  void nextQuestion() {\r\n    if (_questionNumber < questionBank.length - 1) {\r\n      _questionNumber++;\r\n    }\r\n  }\r\n\r\n  bool isFinished() {\r\n    if (_questionNumber >= questionBank.length - 1) {\r\n      return true;\r\n    } else {\r\n      return false;\r\n    }\r\n  }\r\n\r\n  void reset() {\r\n    _questionNumber = 0;\r\n  }\r\n}\r\n"
+        }
+    ]
+}

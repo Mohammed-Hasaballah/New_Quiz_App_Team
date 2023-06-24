@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 12,
             "patches": [
                 {
                     "date": 1687438319439,
@@ -36,6 +36,26 @@
                 {
                     "date": 1687526531354,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -93,17 +93,15 @@\n                     ),\r\n                     padding: const EdgeInsets.symmetric(\r\n                         vertical: 12, horizontal: 16),\r\n                   ),\r\n-                  child: Expanded(\r\n-                    child: Center(\r\n-                      child: Text(\r\n-                        'Game',\r\n-                        style: TextStyle(\r\n-                            color: levelInfo.colors[0],\r\n-                            fontWeight: FontWeight.w500,\r\n-                            fontSize: 18),\r\n-                      ),\r\n+                  child: Center(\r\n+                    child: Text(\r\n+                      'Game',\r\n+                      style: TextStyle(\r\n+                          color: levelInfo.colors[0],\r\n+                          fontWeight: FontWeight.w500,\r\n+                          fontSize: 18),\r\n                     ),\r\n                   ),\r\n                 ),\r\n               ),\r\n"
+                },
+                {
+                    "date": 1687638449292,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,9 @@\n   }) : super(key: key);\r\n \r\n   @override\r\n   Widget build(BuildContext context) {\r\n-    var questionNumber = 5;\r\n-    var questionsCount = 10;\r\n+ \r\n     return Scaffold(\r\n       body: Container(\r\n         decoration: BoxDecoration(\r\n           gradient: LinearGradient(\r\n"
+                },
+                {
+                    "date": 1687638563682,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \r\n import '../widgets/my_outline_btn.dart';\r\n \r\n class LevelDescription extends StatelessWidget {\r\n-  final level levelInfo;\r\n+  final Level levelInfo;\r\n   const LevelDescription({\r\n     Key? key,\r\n     required this.levelInfo,\r\n   }) : super(key: key);\r\n"
+                },
+                {
+                    "date": 1687638950767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import 'package:flutter/material.dart';\r\n-import 'package:multi_quiz_s_t_tt9/modules/level_class.dart';\r\n+import 'package:multi_quiz_s_t_tt9/widgets/level_class.dart';\r\n \r\n import '../widgets/my_outline_btn.dart';\r\n \r\n class LevelDescription extends StatelessWidget {\r\n"
+                },
+                {
+                    "date": 1687639190397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n import 'package:flutter/material.dart';\r\n import 'package:multi_quiz_s_t_tt9/widgets/level_class.dart';\r\n-\r\n import '../widgets/my_outline_btn.dart';\r\n \r\n class LevelDescription extends StatelessWidget {\r\n   final Level levelInfo;\r\n"
+                },
+                {
+                    "date": 1687645598411,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,8 @@\n   }) : super(key: key);\r\n \r\n   @override\r\n   Widget build(BuildContext context) {\r\n- \r\n     return Scaffold(\r\n       body: Container(\r\n         decoration: BoxDecoration(\r\n           gradient: LinearGradient(\r\n"
                 }
             ],
             "date": 1687438319439,

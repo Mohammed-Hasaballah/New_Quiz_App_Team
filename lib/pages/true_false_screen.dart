@@ -1,10 +1,10 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, library_private_types_in_public_api
 
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import '../constants.dart';
-import '../modules/true_false/quizBrain.dart';
+import '../modules/true_false/true_false_brain.dart';
 import '../widgets/my_outline_btn.dart';
 import 'home.dart';
 

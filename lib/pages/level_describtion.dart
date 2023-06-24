@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:multi_quiz_s_t_tt9/modules/level_class.dart';
-
+import 'package:multi_quiz_s_t_tt9/widgets/level_class.dart';
 import '../widgets/my_outline_btn.dart';
 
 class LevelDescription extends StatelessWidget {
-  final level levelInfo;
+  final Level levelInfo;
   const LevelDescription({
     Key? key,
     required this.levelInfo,
@@ -12,8 +11,6 @@ class LevelDescription extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var questionNumber = 5;
-    var questionsCount = 10;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(

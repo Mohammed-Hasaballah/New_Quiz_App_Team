@@ -1,0 +1,18 @@
+{
+    "sourceFile": "lib/modules/true_false/question.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1687645569194,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1687645569194,
+            "name": "Commit-0",
+            "content": "class Question {\r\n  String questionText;\r\n  bool questionAnswer;\r\n\r\n  Question(this.questionText, this.questionAnswer);\r\n}\r\n"
+        }
+    ]
+}

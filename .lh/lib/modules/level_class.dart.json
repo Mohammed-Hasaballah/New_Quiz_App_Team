@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1687440732606,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1687638550672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,20 @@\n import 'package:flutter/material.dart';\r\n \r\n-class level{\r\n-   late final String title;\r\n-   late final String subtitle;\r\n-   late final String? descreption;\r\n+class Level {\r\n+  late final String title;\r\n+  late final String subtitle;\r\n+  late final String? descreption;\r\n   late final String? image;\r\n   late final IconData? icon;\r\n-  late final List<Color>colors;\r\n+  late final List<Color> colors;\r\n   late final String routeName;\r\n   level({\r\n     required this.title,\r\n     required this.subtitle,\r\n-     this.descreption,\r\n-     this.image,\r\n-     this.icon,\r\n-     required  this.colors,\r\n+    this.descreption,\r\n+    this.image,\r\n+    this.icon,\r\n+    required this.colors,\r\n     required this.routeName,\r\n   });\r\n-\r\n }\r\n-\r\n-\r\n-\r\n"
                 }
             ],
             "date": 1687440732606,

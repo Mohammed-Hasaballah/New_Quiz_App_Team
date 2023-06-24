@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_quiz_s_t_tt9/constants.dart';
-import 'package:multi_quiz_s_t_tt9/modules/level_class.dart';
+import 'package:multi_quiz_s_t_tt9/widgets/level_class.dart';
 import 'package:multi_quiz_s_t_tt9/pages/level_describtion.dart';
 import 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';
 import '../widgets/my_level_widget.dart';
@@ -14,8 +14,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<level> levels = [
-    level(
+  List<Level> levels = [
+    Level(
       title: 'True or false',
       subtitle: 'Level 1',
       descreption: 'Rise Up Your IQ',
@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
       colors: [kL1, kL12],
       routeName: '/level1',
     ),
-    level(
+    Level(
       title: 'Multiple Choice',
       subtitle: 'Level 2',
       descreption: 'Rise Up Your IQ',

@@ -1,0 +1,50 @@
+{
+    "sourceFile": "lib/modules/multipe_choice/choice_handel.dart",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1687638583322,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1687638589205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,17 +7,17 @@\n import '../../constants.dart';\r\n \r\n \r\n // ignore: camel_case_types, must_be_immutable\r\n-class choice extends StatefulWidget {\r\n+class Choice extends StatefulWidget {\r\n    late String choisetext;\r\n    late int useranswer;\r\n    late Color color;\r\n     late int questionNumber;\r\n     late Color dfd;\r\n     Function()? onPressed;\r\n     \r\n-  choise(this.choisetext,this.color,this.useranswer,this.questionNumber, this.onPressed);\r\n+  Choice(this.choisetext,this.color,this.useranswer,this.questionNumber, this.onPressed);\r\n \r\n   @override\r\n   State<choise> createState() => _choiseState();\r\n }\r\n"
+                },
+                {
+                    "date": 1687638594796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,12 +18,12 @@\n     \r\n   Choice(this.choisetext,this.color,this.useranswer,this.questionNumber, this.onPressed);\r\n \r\n   @override\r\n-  State<choise> createState() => _choiseState();\r\n+  State<Choice> createState() => _ChoiceState();\r\n }\r\n \r\n-class _choiseState extends State<choise> {\r\n+class _ChoiceState extends State<choise> {\r\n bring_question chick=bring_question();\r\n \r\n   @override\r\n   Widget build(BuildContext context,) {\r\n"
+                },
+                {
+                    "date": 1687638618084,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,15 +15,15 @@\n     late int questionNumber;\r\n     late Color dfd;\r\n     Function()? onPressed;\r\n     \r\n-  Choice(this.choisetext,this.color,this.useranswer,this.questionNumber, this.onPressed);\r\n+  Choice(this.choisetext,this.color,this.useranswer,this.questionNumber, this.onPressed, {super.key});\r\n \r\n   @override\r\n   State<Choice> createState() => _ChoiceState();\r\n }\r\n \r\n-class _ChoiceState extends State<choise> {\r\n+class _ChoiceState extends State<Choice> {\r\n bring_question chick=bring_question();\r\n \r\n   @override\r\n   Widget build(BuildContext context,) {\r\n"
+                },
+                {
+                    "date": 1687638692458,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n   State<Choice> createState() => _ChoiceState();\r\n }\r\n \r\n class _ChoiceState extends State<Choice> {\r\n-bring_question chick=bring_question();\r\n+MultibleQBrain chick=MultibleQBrain();\r\n \r\n   @override\r\n   Widget build(BuildContext context,) {\r\n     return Padding(\r\n"
+                },
+                {
+                    "date": 1687638889826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n // import 'dart:async';\r\n \r\n import 'package:flutter/material.dart';\r\n \r\n-import 'package:multi_quiz_s_t_tt9/modules/multipe_choice/quizBrainMultiple.dart';\r\n+import 'package:multi_quiz_s_t_tt9/modules/multipe_choice/multi_q_brain.dart';\r\n \r\n import '../../constants.dart';\r\n \r\n \r\n"
+                },
+                {
+                    "date": 1687642225753,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n class Choice extends StatefulWidget {\r\n    late String choisetext;\r\n    late int useranswer;\r\n    late Color color;\r\n+   late bool\r\n     late int questionNumber;\r\n     late Color dfd;\r\n     Function()? onPressed;\r\n     \r\n"
+                },
+                {
+                    "date": 1687642233859,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n class Choice extends StatefulWidget {\r\n    late String choisetext;\r\n    late int useranswer;\r\n    late Color color;\r\n-   late bool isChoiceDisabled\r\n+   late bool isChoiceDisabled;\r\n     late int questionNumber;\r\n     late Color dfd;\r\n     Function()? onPressed;\r\n     \r\n"
+                },
+                {
+                    "date": 1687644141156,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n       child: ElevatedButton(\r\n         onPressed: widget.onPressed,\r\n         style: ElevatedButton.styleFrom(\r\n           backgroundColor: widget.color,\r\n-          disabledBackgroundColor: ,\r\n+          disabledBackgroundColor: Colors.white,\r\n           shape: RoundedRectangleBorder(\r\n             borderRadius: BorderRadius.circular(15),\r\n           ),\r\n           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),\r\n"
+                }
+            ],
+            "date": 1687638583322,
+            "name": "Commit-0",
+            "content": "// import 'dart:async';\r\n\r\nimport 'package:flutter/material.dart';\r\n\r\nimport 'package:multi_quiz_s_t_tt9/modules/multipe_choice/quizBrainMultiple.dart';\r\n\r\nimport '../../constants.dart';\r\n\r\n\r\n// ignore: camel_case_types, must_be_immutable\r\nclass choice extends StatefulWidget {\r\n   late String choisetext;\r\n   late int useranswer;\r\n   late Color color;\r\n    late int questionNumber;\r\n    late Color dfd;\r\n    Function()? onPressed;\r\n    \r\n  choise(this.choisetext,this.color,this.useranswer,this.questionNumber, this.onPressed);\r\n\r\n  @override\r\n  State<choise> createState() => _choiseState();\r\n}\r\n\r\nclass _choiseState extends State<choise> {\r\nbring_question chick=bring_question();\r\n\r\n  @override\r\n  Widget build(BuildContext context,) {\r\n    return Padding(\r\n      padding: const EdgeInsets.only(bottom: 12),\r\n      child: ElevatedButton(\r\n        \r\n        onPressed: widget.onPressed,\r\n        style: ElevatedButton.styleFrom(\r\n                    backgroundColor: widget.color,\r\n                    shape: RoundedRectangleBorder(\r\n                      borderRadius: BorderRadius.circular(15),\r\n                    ),\r\n                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),\r\n                  ),\r\n         child: Row(\r\n                    children: [\r\n                      const SizedBox(\r\n                        width: 24,\r\n                      ),\r\n                      Expanded(\r\n                        child: Center(\r\n                          child: Text(\r\n                            widget.choisetext,\r\n                            style: const TextStyle(\r\n                                color: kL2,\r\n                                fontWeight: FontWeight.w500,\r\n                                fontSize: 18),\r\n                          ),\r\n                        ),\r\n                      ),\r\n                      \r\n                    ],\r\n                  ),\r\n                ),\r\n    );\r\n  }\r\n}"
+        }
+    ]
+}

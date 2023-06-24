@@ -1,21 +1,36 @@
+import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:multi_quiz_s_t_tt9/pages/home.dart';
-import 'package:multi_quiz_s_t_tt9/widgets/my_outline_btn.dart';
-
+import 'package:rflutter_alert/rflutter_alert.dart';
 import '../constants.dart';
+import '../modules/multipe_choice/choice_handel.dart';
+import '../modules/multipe_choice/quizBrainMultiple.dart';
+import '../widgets/my_outline_btn.dart';
+import 'home.dart';
 
-class MultiQScreen extends StatefulWidget {
-  const MultiQScreen({Key? key}) : super(key: key);
-
+// ignore: camel_case_types
+class quiz_screen extends StatefulWidget {
+  const quiz_screen({super.key});
   @override
-  State<MultiQScreen> createState() => _MultiQScreenState();
+  State<quiz_screen> createState() => _quiz_screenState();
 }
 
-class _MultiQScreenState extends State<MultiQScreen> {
+class _quiz_screenState extends State<quiz_screen> {
+  bring_question quize = bring_question();
+
+  int score = 0;
+  int count = 01;
+
+  Color color = Colors.white;
+  Color color1 = Colors.white;
+  Color color2 = Colors.white;
+
+  int questionNumber = 1;
+
+  late int questionsCount;
   @override
   Widget build(BuildContext context) {
-    var questionNumber = 5;
-    var questionsCount = 10;
+    questionsCount = quize.gitlingth();
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -29,13 +44,14 @@ class _MultiQScreenState extends State<MultiQScreen> {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(top: 74, left: 24, right: 24),
+          padding: const EdgeInsets.only(top: 56, left: 24, right: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  ///-------------------------------------the crose button------
                   SizedBox(
                     height: 44,
                     width: 44,
@@ -57,50 +73,23 @@ class _MultiQScreenState extends State<MultiQScreen> {
                       },
                     ),
                   ),
-                  // OutlinedButton(
-                  //   onPressed: () {},
-                  //   style: ButtonStyle().copyWith(
-                  //     shape: MaterialStatePropertyAll(
-                  //       RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(25),
-                  //       ),
-                  //     ),
-                  //     side: MaterialStatePropertyAll(
-                  //       BorderSide(color: Colors.white),
-                  //     ),
-                  //   ),
-                  //   child: Row(
-                  //     children: [
-                  //       Icon(
-                  //         Icons.favorite,
-                  //         color: Colors.white,
-                  //       ),
-                  //       SizedBox(
-                  //         width: 8,
-                  //       ),
-                  //       const Text(
-                  //         '3',
-                  //         style: TextStyle(color: Colors.white),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
+//-----------------------------------the progress indicator-----------
 
-                  const Stack(
+                  Stack(
                     alignment: Alignment.center,
                     children: [
                       SizedBox(
                         height: 56,
                         width: 56,
                         child: CircularProgressIndicator(
-                          value: 0.7,
+                          value: (count) / 10,
                           color: Colors.white,
                           backgroundColor: Colors.white12,
                         ),
                       ),
                       Text(
-                        '05',
-                        style: TextStyle(
+                        "$count",
+                        style: const TextStyle(
                           fontFamily: 'Sf-Pro-Text',
                           fontSize: 24,
                           color: Colors.white,
@@ -109,7 +98,7 @@ class _MultiQScreenState extends State<MultiQScreen> {
                       )
                     ],
                   ),
-
+//-----------------------------------like button------
                   OutlinedButton(
                     onPressed: () {},
                     style: OutlinedButton.styleFrom(
@@ -124,31 +113,37 @@ class _MultiQScreenState extends State<MultiQScreen> {
                   )
                 ],
               ),
+              //------------------image ------
               Expanded(
                 child: Center(
                   child: Image.asset('assets/images/ballon-b.png'),
                 ),
               ),
+              //----------------number of question---------
               Text(
-                'question $questionNumber of $questionsCount',
+                'question $count of $questionsCount',
                 style: const TextStyle(
                   fontSize: 18,
                   fontFamily: 'Sf-Pro-Text',
                   color: Colors.white60,
                 ),
+                //-----------------------------------------
               ),
               const SizedBox(
                 height: 8,
               ),
-              const Text(
-                'In Which City of Germany Is the Largest Port?',
-                style: TextStyle(
+
+              ///--------------- text of qastion--------------------
+              Text(
+                quize.gitqustiontext(),
+                style: const TextStyle(
                   fontSize: 32,
                   fontFamily: 'Sf-Pro-Text',
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
+
               const SizedBox(
                 height: 48,
               ),
@@ -161,7 +156,8 @@ class _MultiQScreenState extends State<MultiQScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12, horizontal: 16),
                   ),
                   child: const Row(
                     children: [
@@ -196,7 +192,8 @@ class _MultiQScreenState extends State<MultiQScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12, horizontal: 16),
                   ),
                   child: const Row(
                     children: [
@@ -231,7 +228,8 @@ class _MultiQScreenState extends State<MultiQScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12, horizontal: 16),
                   ),
                   child: const Row(
                     children: [
@@ -257,6 +255,138 @@ class _MultiQScreenState extends State<MultiQScreen> {
                   ),
                 ),
               ),
+
+              //-----------------------------
+              const SizedBox(
+                height: 48,
+              ),
+              //------------------choise---------
+
+              //------------------choise1---------
+
+              choise(quize.gitchoise(0), color, 0, quize.questionnumber, () {
+                if (0 == quize.gitqustionanswer()) {
+                  setState(() {
+                    color = kG1;
+                    score++;
+                  });
+                } else {
+                  setState(() {
+                    color = kRedFont;
+                  });
+                }
+              }),
+
+              choise(quize.gitchoise(1), color1, 1, quize.questionnumber, () {
+                if (1 == quize.gitqustionanswer()) {
+                  setState(() {
+                    color1 = kG1;
+                    score++;
+                  });
+                } else {
+                  setState(() {
+                    color1 = kRedFont;
+                  });
+                }
+
+//  if (quize.isfinished()) {
+//                     print("is fine-----------");
+
+//                     setState(() {
+//                     color=Colors.white;
+//                     color1=Colors.white;
+//                     color2=Colors.white;
+//                       quize.reset();
+//                       ;
+
+//                Alert(context: context, title: "finished", desc: "the quize is finished. and your scor $score/${quize.gitlingth()}").show();
+//                      score=0;
+//                       count=1;
+//                       });
+//                }
+
+// else{
+//     Timer(const Duration(seconds: 1), () {
+//     setState(() {
+//       count++;
+//       quize.nextquestion();
+//       color=Colors.white;
+//       color1=Colors.white;
+//       color2=Colors.white;
+//     });
+//  });
+//   }
+              }),
+
+              choise(quize.gitchoise(2), color2, 2, quize.questionnumber, () {
+                if (2 == quize.gitqustionanswer()) {
+                  setState(() {
+                    color2 = kG1;
+                    score++;
+                  });
+                } else {
+                  setState(() {
+                    color2 = kRedFont;
+                  });
+                }
+
+//  if (quize.isfinished()) {
+//                     print("is fine-----------");
+
+//                     Alert(context: context, title: "finished", desc: "the quize is finished. and your scor $score/${quize.gitlingth()}").show();
+//                     setState(() {
+//                       quize.reset();
+//                       score=0;
+//                       count=1;
+//                     });}
+// else{
+//     Timer(const Duration(seconds: 1), () {
+//     setState(() {
+//       count++;
+//       quize.nextquestion();
+//       color=Colors.white;
+//       color1=Colors.white;
+//       color2=Colors.white;
+//     });
+//  });
+//   }
+              }),
+
+              TextButton(
+                  onPressed: () {
+                    if (quize.isfinished()) {
+                      print("is fine-----------");
+                      Alert(
+                              context: context,
+                              title: "finished",
+                              desc:
+                                  "the quize is finished. and your scor $score/${quize.gitlingth()}")
+                          .show();
+                      setState(() {
+                        quize.reset();
+                        score = 0;
+                        count = 1;
+                        color = Colors.white;
+                        color1 = Colors.white;
+                        color2 = Colors.white;
+                      });
+                    } else {
+                      setState(() {
+                        count++;
+                        quize.nextquestion();
+                        color = Colors.white;
+                        color1 = Colors.white;
+                        color2 = Colors.white;
+                      });
+                    }
+                  },
+                  child: const Text(
+                    "next",
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  )),
               const SizedBox(
                 height: 48,
               ),

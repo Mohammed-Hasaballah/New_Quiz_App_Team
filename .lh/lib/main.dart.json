@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 13,
+            "activePatchIndex": 32,
             "patches": [
                 {
                     "date": 1687438778134,
@@ -60,6 +60,82 @@
                 {
                     "date": 1687438963642,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import 'package:flutter/material.dart';\r\n import 'package:multi_quiz_s_t_tt9/pages/home.dart';\r\n+import 'package:multi_quiz_s_t_tt9/pages/multiple_q_screen.dart';\r\n import 'package:multi_quiz_s_t_tt9/pages/true_false_q_screen.dart';\r\n \r\n void main() {\r\n   runApp(const MyApp());\r\n@@ -9,15 +10,15 @@\n class MyApp extends StatelessWidget {\r\n   const MyApp({super.key});\r\n   @override\r\n   Widget build(BuildContext context) {\r\n-    return   MaterialApp(\r\n+    return MaterialApp(\r\n+      de\r\n       initialRoute: '/',\r\n       routes: {\r\n-        '/': (context) => HomePage(),\r\n+        '/': (context) => const HomePage(),\r\n         '/level1': (context) => TrueFalseQuiz(),\r\n-        '/level2': (context) => MultiQScreen(),\r\n+        '/level2': (context) => const MultiQScreen(),\r\n       },\r\n-     \r\n     );\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1687621148406,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,14 +11,16 @@\n   const MyApp({super.key});\r\n   @override\r\n   Widget build(BuildContext context) {\r\n     return MaterialApp(\r\n-      de\r\n+      debugShowCheckedModeBanner: false,\r\n       initialRoute: '/',\r\n       routes: {\r\n         '/': (context) => const HomePage(),\r\n+\r\n         '/level1': (context) => TrueFalseQuiz(),\r\n-        '/level2': (context) => const MultiQScreen(),\r\n+        '/level2': (context) => const quiz_screen(),\r\n+>>>>>>> 2a8cfa6b1480f277f065e36cc4bb043f47eb8cfb\r\n       },\r\n     );\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1687621159054,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,12 +15,10 @@\n       debugShowCheckedModeBanner: false,\r\n       initialRoute: '/',\r\n       routes: {\r\n         '/': (context) => const HomePage(),\r\n-\r\n         '/level1': (context) => TrueFalseQuiz(),\r\n         '/level2': (context) => const quiz_screen(),\r\n->>>>>>> 2a8cfa6b1480f277f065e36cc4bb043f47eb8cfb\r\n       },\r\n     );\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1687621220069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +0,0 @@\n-import 'package:flutter/material.dart';\r\n-import 'package:multi_quiz_s_t_tt9/pages/home.dart';\r\n-import 'package:multi_quiz_s_t_tt9/pages/multiple_q_screen.dart';\r\n-import 'package:multi_quiz_s_t_tt9/pages/true_false_q_screen.dart';\r\n-\r\n-void main() {\r\n-  runApp(const MyApp());\r\n-}\r\n-\r\n-class MyApp extends StatelessWidget {\r\n-  const MyApp({super.key});\r\n-  @override\r\n-  Widget build(BuildContext context) {\r\n-    return MaterialApp(\r\n-      debugShowCheckedModeBanner: false,\r\n-      initialRoute: '/',\r\n-      routes: {\r\n-        '/': (context) => const HomePage(),\r\n-        '/level1': (context) => TrueFalseQuiz(),\r\n-        '/level2': (context) => const quiz_screen(),\r\n-      },\r\n-    );\r\n-  }\r\n-}\r\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1687621225136,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +0,0 @@\n-\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1687621238616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,10 @@\n-\n+import 'package:flutter/material.dart';\r\n+import 'package:multi_quiz_s_t_tt9/pages/home.dart';\r\n+import 'package:multi_quiz_s_t_tt9/pages/multiple_q_screen.dart';\r\n+import 'package:multi_quiz_s_t_tt9/pages/true_false_q_screen.dart';\r\n+\r\n+void main() {\r\n+  runApp(const MyApp());\r\n+}\r\n+\r\n+\r\n"
+                },
+                {
+                    "date": 1687621247305,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,6 +5,20 @@\n \r\n void main() {\r\n   runApp(const MyApp());\r\n }\r\n+class MyApp extends StatelessWidget {\r\n+  const MyApp({super.key});\r\n+  @override\r\n+  Widget build(BuildContext context) {\r\n+    return MaterialApp(\r\n+      debugShowCheckedModeBanner: false,\r\n+      initialRoute: '/',\r\n+      routes: {\r\n+        '/': (context) => const HomePage(),\r\n+        '/level1': (context) => const TrueFalseQuiz(),\r\n+        '/level2': (context) => const quiz_screen(),\r\n+      },\r\n+    );\r\n+  }\r\n+}\r\n \r\n-\r\n"
+                },
+                {
+                    "date": 1687621271426,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n \r\n void main() {\r\n   runApp(const MyApp());\r\n }\r\n+\r\n class MyApp extends StatelessWidget {\r\n   const MyApp({super.key});\r\n   @override\r\n   Widget build(BuildContext context) {\r\n@@ -14,11 +15,15 @@\n       debugShowCheckedModeBanner: false,\r\n       initialRoute: '/',\r\n       routes: {\r\n         '/': (context) => const HomePage(),\r\n+<<<<<<< HEAD\r\n         '/level1': (context) => const TrueFalseQuiz(),\r\n+        '/level2': (context) => const MultiQScreen(),\r\n+=======\r\n+        '/level1': (context) => TrueFalseQuiz(),\r\n         '/level2': (context) => const quiz_screen(),\r\n+>>>>>>> 2a8cfa6b1480f277f065e36cc4bb043f47eb8cfb\r\n       },\r\n     );\r\n   }\r\n }\r\n-\r\n"
+                },
+                {
+                    "date": 1687621281399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n       routes: {\r\n         '/': (context) => const HomePage(),\r\n <<<<<<< HEAD\r\n         '/level1': (context) => const TrueFalseQuiz(),\r\n-        '/level2': (context) => const MultiQScreen(),\r\n+        '/level2': (context) => const quiz_screen(),\r\n =======\r\n         '/level1': (context) => TrueFalseQuiz(),\r\n         '/level2': (context) => const quiz_screen(),\r\n >>>>>>> 2a8cfa6b1480f277f065e36cc4bb043f47eb8cfb\r\n"
+                },
+                {
+                    "date": 1687621288271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,12 +18,12 @@\n         '/': (context) => const HomePage(),\r\n <<<<<<< HEAD\r\n         '/level1': (context) => const TrueFalseQuiz(),\r\n         '/level2': (context) => const quiz_screen(),\r\n-=======\r\n+\r\n         '/level1': (context) => TrueFalseQuiz(),\r\n         '/level2': (context) => const quiz_screen(),\r\n->>>>>>> 2a8cfa6b1480f277f065e36cc4bb043f47eb8cfb\r\n+\r\n       },\r\n     );\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1687621294011,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n       debugShowCheckedModeBanner: false,\r\n       initialRoute: '/',\r\n       routes: {\r\n         '/': (context) => const HomePage(),\r\n-<<<<<<< HEAD\r\n+\r\n         '/level1': (context) => const TrueFalseQuiz(),\r\n         '/level2': (context) => const quiz_screen(),\r\n \r\n         '/level1': (context) => TrueFalseQuiz(),\r\n"
+                },
+                {
+                    "date": 1687621331096,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \r\n         '/level1': (context) => const TrueFalseQuiz(),\r\n         '/level2': (context) => const quiz_screen(),\r\n \r\n-        '/level1': (context) => TrueFalseQuiz(),\r\n+        '/level3': (context) => TrueFalseQuiz(),\r\n         '/level2': (context) => const quiz_screen(),\r\n \r\n       },\r\n     );\r\n"
+                },
+                {
+                    "date": 1687621346931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \r\n         '/level1': (context) => const TrueFalseQuiz(),\r\n         '/level2': (context) => const quiz_screen(),\r\n \r\n-        '/level3': (context) => TrueFalseQuiz(),\r\n+        '/level3': (context) => const TrueFalseQuiz(),\r\n         '/level2': (context) => const quiz_screen(),\r\n \r\n       },\r\n     );\r\n"
+                },
+                {
+                    "date": 1687621353033,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n         '/level1': (context) => const TrueFalseQuiz(),\r\n         '/level2': (context) => const quiz_screen(),\r\n \r\n         '/level3': (context) => const TrueFalseQuiz(),\r\n-        '/level2': (context) => const quiz_screen(),\r\n+        '/level': (context) => const quiz_screen(),\r\n \r\n       },\r\n     );\r\n   }\r\n"
+                },
+                {
+                    "date": 1687621359759,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,11 +19,11 @@\n \r\n         '/level1': (context) => const TrueFalseQuiz(),\r\n         '/level2': (context) => const quiz_screen(),\r\n \r\n-        '/level3': (context) => const TrueFalseQuiz(),\r\n-        '/level': (context) => const quiz_screen(),\r\n \r\n+        '/level3': (context) => const quiz_screen(),\r\n+\r\n       },\r\n     );\r\n   }\r\n }\r\n"
+                },
+                {
+                    "date": 1687621364970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \r\n         '/level1': (context) => const TrueFalseQuiz(),\r\n         '/level2': (context) => const quiz_screen(),\r\n \r\n-\r\n+        '/level3': (context) => const TrueFalseQuiz(),\r\n         '/level3': (context) => const quiz_screen(),\r\n \r\n       },\r\n     );\r\n"
+                },
+                {
+                    "date": 1687621373515,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,12 +16,12 @@\n       initialRoute: '/',\r\n       routes: {\r\n         '/': (context) => const HomePage(),\r\n \r\n-        '/level1': (context) => const TrueFalseQuiz(),\r\n-        '/level2': (context) => const quiz_screen(),\r\n \r\n-        '/level3': (context) => const TrueFalseQuiz(),\r\n+        '/level1': (context) => const quiz_screen(),\r\n+\r\n+\r\n         '/level3': (context) => const quiz_screen(),\r\n \r\n       },\r\n     );\r\n"
+                },
+                {
+                    "date": 1687621390361,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,12 +17,12 @@\n       routes: {\r\n         '/': (context) => const HomePage(),\r\n \r\n \r\n-        '/level1': (context) => const quiz_screen(),\r\n+        '/level1': (context) => const TrueFalseQuiz(),\r\n \r\n \r\n-        '/level3': (context) => const quiz_screen(),\r\n+        '/level2': (context) => const quiz_screen(),\r\n \r\n       },\r\n     );\r\n   }\r\n"
+                },
+                {
+                    "date": 1687621395713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n       routes: {\r\n         '/': (context) => const HomePage(),\r\n \r\n \r\n-        '/level1': (context) => const TrueFalseQuiz(),\r\n+        '/level1': (context) => const quiz_screen(),\r\n \r\n \r\n         '/level2': (context) => const quiz_screen(),\r\n \r\n"
+                },
+                {
+                    "date": 1687621456712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,7 @@\n import 'package:flutter/material.dart';\r\n import 'package:multi_quiz_s_t_tt9/pages/home.dart';\r\n import 'package:multi_quiz_s_t_tt9/pages/multiple_q_screen.dart';\r\n-import 'package:multi_quiz_s_t_tt9/pages/true_false_q_screen.dart';\r\n \r\n void main() {\r\n   runApp(const MyApp());\r\n }\r\n@@ -15,15 +14,10 @@\n       debugShowCheckedModeBanner: false,\r\n       initialRoute: '/',\r\n       routes: {\r\n         '/': (context) => const HomePage(),\r\n-\r\n-\r\n-        '/level1': (context) => const quiz_screen(),\r\n-\r\n-\r\n+        '/level1': (context) => const Tr(),\r\n         '/level2': (context) => const quiz_screen(),\r\n-\r\n       },\r\n     );\r\n   }\r\n }\r\n"
                 }
             ],
             "date": 1687438778134,

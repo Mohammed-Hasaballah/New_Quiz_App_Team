@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
-        '/level1': (context) => TrueFalseQuiz(),
+        '/level1': (context) => const TrueFalseQuiz(),
         '/level2': (context) => const MultiQScreen(),
       },
     );

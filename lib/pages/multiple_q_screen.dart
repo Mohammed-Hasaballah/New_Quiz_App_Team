@@ -18,7 +18,7 @@ class _MultiQScreenState extends State<MultiQScreen> {
     var questionsCount = 10;
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
               kBlueBg,
@@ -50,7 +50,7 @@ class _MultiQScreenState extends State<MultiQScreen> {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => HomePage(),
+                            builder: (context) => const HomePage(),
                           ),
                           (route) => false,
                         );
@@ -86,7 +86,7 @@ class _MultiQScreenState extends State<MultiQScreen> {
                   //   ),
                   // ),
 
-                  Stack(
+                  const Stack(
                     alignment: Alignment.center,
                     children: [
                       SizedBox(
@@ -112,15 +112,15 @@ class _MultiQScreenState extends State<MultiQScreen> {
 
                   OutlinedButton(
                     onPressed: () {},
-                    child: Icon(
-                      Icons.favorite,
-                      color: Colors.white,
-                    ),
                     style: OutlinedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        side: BorderSide(color: Colors.white)),
+                        side: const BorderSide(color: Colors.white)),
+                    child: const Icon(
+                      Icons.favorite,
+                      color: Colors.white,
+                    ),
                   )
                 ],
               ),
@@ -131,16 +131,16 @@ class _MultiQScreenState extends State<MultiQScreen> {
               ),
               Text(
                 'question $questionNumber of $questionsCount',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontFamily: 'Sf-Pro-Text',
                   color: Colors.white60,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
-              Text(
+              const Text(
                 'In Which City of Germany Is the Largest Port?',
                 style: TextStyle(
                   fontSize: 32,
@@ -149,7 +149,7 @@ class _MultiQScreenState extends State<MultiQScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 48,
               ),
               Padding(
@@ -161,9 +161,9 @@ class _MultiQScreenState extends State<MultiQScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
                       SizedBox(
                         width: 24,
@@ -196,9 +196,9 @@ class _MultiQScreenState extends State<MultiQScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
                       SizedBox(
                         width: 24,
@@ -231,9 +231,9 @@ class _MultiQScreenState extends State<MultiQScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   ),
-                  child: Row(
+                  child: const Row(
                     children: [
                       SizedBox(
                         width: 24,
@@ -257,7 +257,7 @@ class _MultiQScreenState extends State<MultiQScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 48,
               ),
             ],

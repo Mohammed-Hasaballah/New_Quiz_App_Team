@@ -73,6 +73,14 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
                       scoreKeeper.clear();
                     });
                   }),
+              DialogButton(
+                  child: const Text(
+                    "Play Again",
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  }),
             ]).show();
         setState(() {
           quizBrain.reset();

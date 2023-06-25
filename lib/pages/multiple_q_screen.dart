@@ -67,6 +67,14 @@ class _MultiQuizScreenState extends State<MultiQuizScreen> {
                     (route) => false,
                   );
                 }),
+            DialogButton(
+                child: const Text(
+                  "Play Again",
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                }),
           ]).show();
       setState(() {
         quizeBrain.reset();

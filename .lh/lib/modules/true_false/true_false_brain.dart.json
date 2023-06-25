@@ -3,11 +3,27 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 4,
             "patches": [
                 {
                     "date": 1687645581447,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1687685624025,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,5 +50,6 @@\n \r\n   void reset() {\r\n     _questionNumber = 0;\r\n   }\r\n+  \r\n }\r\n"
+                },
+                {
+                    "date": 1687685630323,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,6 +50,6 @@\n \r\n   void reset() {\r\n     _questionNumber = 0;\r\n   }\r\n-  \r\n+  int getLe\r\n }\r\n"
+                },
+                {
+                    "date": 1687685636133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,6 +50,8 @@\n \r\n   void reset() {\r\n     _questionNumber = 0;\r\n   }\r\n-  int getLe\r\n+  int getLength(){\r\n+    \r\n+  }\r\n }\r\n"
+                },
+                {
+                    "date": 1687686858046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,12 +19,9 @@\n     Question(\r\n       'Buzz Aldrin\\'s mother\\'s maiden name was \"Moon\".',\r\n       true,\r\n     ),\r\n-    Question(\r\n-      'The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.',\r\n-      false,\r\n-    ),\r\n+     \r\n   ];\r\n \r\n   String getQuestionText() {\r\n     return questionBank[_questionNumber].questionText;\r\n"
                 }
             ],
             "date": 1687645581447,

@@ -21,9 +21,13 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
   int result = 0;
   int counter = 10;
   late Timer timer;
+  int questionNum = 1;
+  bool buttonEnabled = true;
+  bool? userChoiceAns;
 
   void checkAnswer(bool? userChoice) {
     bool correctAnswer = quizBrain.getQuestionAnswer();
+
     setState(() {
       if (correctAnswer == userChoice) {
         scoreKeeper.add(
@@ -46,8 +50,7 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
     if (quizBrain.isFinished()) {
       print('finished');
       timer.cancel();
-
-      Timer(const Duration(seconds: 1), () {
+      Timer(const Duration(seconds: 0), () {
         Alert(
             context: context,
             title: "Quiz Finished",
@@ -73,11 +76,11 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
             ]).show();
         setState(() {
           quizBrain.reset();
-          scoreKeeper.clear();
+          // scoreKeeper.clear();
+          questionNum = 1;
         });
       });
     } else {
-      quizBrain.nextQuestion();
       counter = 10;
     }
   }
@@ -89,9 +92,10 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
         counter--;
       });
       if (counter == 0) {
-        // quizBrain.nextQuestion();
         checkAnswer(null);
-        counter = 10;
+        quizBrain.nextQuestion();
+        questionNum++;
+        buttonEnabled = true;
       }
     });
     super.initState();
@@ -108,10 +112,7 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              kBlueBg,
-              kL2,
-            ],
+            colors: [kL1, kL12],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -180,29 +181,62 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
                   )
                 ],
               ),
+              const SizedBox(
+                height: 32,
+              ),
               Expanded(
-                flex: 5,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Center(
-                    child: Text(
-                      quizBrain.getQuestionText(),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 25.0,
-                        color: Colors.white,
-                      ),
+                flex: 2,
+                child: Center(
+                  child: SizedBox(
+                    height: 200,
+                    width: 200,
+                    child: Image.asset(
+                      'assets/images/bags.png',
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
+              ),
+              Text(
+                'question $questionNum of ${quizBrain.getLength()}',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'Sf-Pro-Text',
+                  color: Colors.white60,
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Expanded(
+                child: Text(
+                  quizBrain.getQuestionText(),
+                  style: const TextStyle(
+                    fontSize: 28,
+                    fontFamily: 'Sf-Pro-Text',
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 24,
               ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: ElevatedButton(
-                    style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(Colors.green),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      disabledBackgroundColor: Colors.green,
                     ),
+                    onPressed: buttonEnabled
+                        ? () {
+                            //The user picked true.
+                            checkAnswer(true);
+                            buttonEnabled = false;
+                          }
+                        : null,
                     child: const Text(
                       'True',
                       style: TextStyle(
@@ -210,10 +244,6 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
                         fontSize: 20.0,
                       ),
                     ),
-                    onPressed: () {
-                      //The user picked true.
-                      checkAnswer(true);
-                    },
                   ),
                 ),
               ),
@@ -221,10 +251,17 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: ElevatedButton(
-                    style: const ButtonStyle().copyWith(
-                      backgroundColor:
-                          const MaterialStatePropertyAll(Colors.red),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      disabledBackgroundColor: Colors.red,
                     ),
+                    onPressed: buttonEnabled
+                        ? () {
+                            //The user picked true.
+                            checkAnswer(false);
+                            buttonEnabled = false;
+                          }
+                        : null,
                     child: const Text(
                       'False',
                       style: TextStyle(
@@ -232,23 +269,49 @@ class _TrueFalseQuizState extends State<TrueFalseQuiz> {
                         color: Colors.white,
                       ),
                     ),
-                    onPressed: () {
-                      //The user picked false.
-                      checkAnswer(false);
-                    },
                   ),
                 ),
               ),
               Wrap(
                 children: scoreKeeper,
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        buttonEnabled ? checkAndCont() : cont();
+                      },
+                      child: const Text(
+                        "next",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                        textAlign: TextAlign.center,
+                      )),
+                ],
+              ),
               const SizedBox(
-                height: 72,
+                height: 40,
               )
             ],
           ),
         ),
       ),
     );
+  }
+
+  void checkAndCont() {
+    checkAnswer(userChoiceAns);
+    questionNum++;
+    quizBrain.nextQuestion();
+    buttonEnabled = true;
+  }
+
+  void cont() {
+    questionNum++;
+    quizBrain.nextQuestion();
+    buttonEnabled = true;
   }
 }

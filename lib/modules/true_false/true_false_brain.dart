@@ -20,10 +20,6 @@ class QuizBrain {
       'Buzz Aldrin\'s mother\'s maiden name was "Moon".',
       true,
     ),
-    Question(
-      'The loudest sound produced by any animal is 188 decibels. That animal is the African Elephant.',
-      false,
-    ),
   ];
 
   String getQuestionText() {
@@ -50,5 +46,9 @@ class QuizBrain {
 
   void reset() {
     _questionNumber = 0;
+  }
+
+  int getLength() {
+    return questionBank.length;
   }
 }

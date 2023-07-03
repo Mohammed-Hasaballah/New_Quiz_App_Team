@@ -18,9 +18,9 @@ class _MultiQuizScreenState extends State<MultiQuizScreen> {
 
   int score = 0;
 
-  Color firstChoiceColor = Colors.white;
-  Color secondChoiceColor = Colors.white;
-  Color thirdChoiceColor = Colors.white;
+  Color firstChoiceColor = const Color.fromARGB(255, 198, 196, 196);
+  Color secondChoiceColor = const Color.fromARGB(255, 198, 196, 196);
+  Color thirdChoiceColor = const Color.fromARGB(255, 198, 196, 196);
 
   late int questionsCount;
   int questionNumber = 1;
@@ -28,8 +28,8 @@ class _MultiQuizScreenState extends State<MultiQuizScreen> {
   late Timer timer;
   int counter = 10;
   bool buttonEnabled = true;
-  @override
-  void initState() {
+
+  void startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         counter--;
@@ -38,12 +38,21 @@ class _MultiQuizScreenState extends State<MultiQuizScreen> {
         goToNextQuestion();
       }
     });
+  }
 
+  void stopTimer() {
+    timer.cancel();
+  }
+
+  @override
+  void initState() {
+    startTimer();
     super.initState();
   }
 
   @override
   void dispose() {
+    stopTimer();
     super.dispose();
   }
 
@@ -80,19 +89,20 @@ class _MultiQuizScreenState extends State<MultiQuizScreen> {
         quizeBrain.reset();
         score = 0;
         questionNumber = 1;
-        firstChoiceColor = Colors.white;
-        secondChoiceColor = Colors.white;
-        thirdChoiceColor = Colors.white;
-        timer.cancel();
+        firstChoiceColor = Colors.grey;
+        secondChoiceColor = Colors.grey;
+        thirdChoiceColor = Colors.grey;
+        stopTimer();
       });
     } else {
       setState(() {
         questionNumber++;
         quizeBrain.nextQuestion();
-        firstChoiceColor = Colors.white;
-        secondChoiceColor = Colors.white;
-        thirdChoiceColor = Colors.white;
+        firstChoiceColor = const Color.fromARGB(255, 198, 196, 196);
+        secondChoiceColor = const Color.fromARGB(255, 198, 196, 196);
+        thirdChoiceColor = const Color.fromARGB(255, 198, 196, 196);
         counter = 10;
+        startTimer();
         buttonEnabled = true;
       });
     }
@@ -239,6 +249,7 @@ class _MultiQuizScreenState extends State<MultiQuizScreen> {
                           });
                         }
                         buttonEnabled = false; // Disable clicking on choices
+                        stopTimer();
                       }
                     : null,
               ),
@@ -260,6 +271,7 @@ class _MultiQuizScreenState extends State<MultiQuizScreen> {
                           });
                         }
                         buttonEnabled = false; // Disable clicking on choices
+                        stopTimer();
                       }
                     : null,
               ),
@@ -281,6 +293,7 @@ class _MultiQuizScreenState extends State<MultiQuizScreen> {
                           });
                         }
                         buttonEnabled = false; // Disable clicking on choices
+                        stopTimer();
                       }
                     : null,
               ),
